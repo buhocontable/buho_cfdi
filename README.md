@@ -2,7 +2,7 @@
 
 CFDI generator for 3.3 version.
 
-[![Build Status](https://travis-ci.com/buhocontable/buho_cfdi.svg?token=pvfqse1g1Y1nVGRwY4DL&branch=master)](https://travis-ci.com/buhocontable/buho_cfdi)
+[![Build Status](https://travis-ci.com/buhocontable/buho_cfdi.svg?token=pvfqse1g1Y1nVGRwY4DL&branch=master)](https://travis-ci.com/buhocontable/buho_cfdi) [![Coverage Status](https://coveralls.io/repos/github/buhocontable/buho_cfdi/badge.svg?branch=master)](https://coveralls.io/github/buhocontable/buho_cfdi?branch=master)
 
 ## Installation
 
