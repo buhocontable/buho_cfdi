@@ -1,5 +1,8 @@
+require 'active_model'
+
 module BuhoCfdi
   class BaseNode
+    include ActiveModel::Validations
     attr_accessor :node_hash
 
     def initialize(params = {})

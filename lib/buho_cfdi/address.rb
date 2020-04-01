@@ -12,5 +12,13 @@ module BuhoCfdi
       :country,
       :zip_code
     )
+
+    validates_presence_of(
+      :street,
+      :street_number,
+      :state,
+      :country,
+      :zip_code
+    )
   end
 end
