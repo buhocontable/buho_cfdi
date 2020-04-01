@@ -4,6 +4,6 @@ require "buho_cfdi/address"
 
 
 module BuhoCfdi
-  # class Error < StandardError; end
+  class Error < StandardError; end
   # Your code goes here...
 end

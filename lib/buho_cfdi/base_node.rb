@@ -16,6 +16,8 @@ module BuhoCfdi
       self.class.params.each do |param|
         node_hash[param] = send(param)
       end
+
+      node_hash
     end
 
     class << self
