@@ -2,17 +2,29 @@ module BuhoCfdi
   require 'openssl'
    
   class Key
+
+    attr_reader :private_key
+
     def initialize(file, password=nil)
       if file.is_a? String
-        file = File.read(file)
+        @private_key = File.read(file)
       end
-      super file, password
     end
 
     def seal(invoice)
-      original_string = invoice.original_string
-      invoice.stamp = Base64::encode64(
-        self.sign(OpenSSL::Digest::SHA265.new, original_string)).gsub(/\n/, '')
+      original_string = original_string(invoice)
+      private_key = OpenSSL::PKey::RSA.new(@private_key)
+      digester    = OpenSSL::Digest::SHA256.new
+      signature   = private_key.sign(digester, chain)
+      signature   = Base64.strict_encode64(signature)
+      signature
+    end
+
+    def original_string(invoice)
+        invoice       = invoice
+        xslt      = Nokogiri::XSLT(File.read('../cadenaoriginal_3_3.xslt'))
+        chain     = xslt.transform(invoice)
+        chain.text.gsub("\n","")
     end
   end
 end

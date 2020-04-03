@@ -9,11 +9,10 @@ module BuhoCfdi
       if file.is_a? String
         file = File.read(file)
       end
-      super file
-      
+      certificate = OpenSSL::X509::Certificate.new(file)
       @certificate_number = '';
-      self.serial.to_s(16).scan(/.{2}/).each { |v| @certificate_number += v[1]; }
-      @data = self.to_s.gsub(/^-.+/, '').gsub(/\n/, '')
+      certificate.serial.to_s(16).scan(/.{2}/).each { |v| @certificate_number += v[1]; }
+      @data = certificate.to_s.gsub(/^-.+/, '').gsub(/\n/, '')
       
     end
 

@@ -14,7 +14,8 @@ module BuhoCfdi
       :payment_way,
       :created_at,
       :version,
-      :concepts
+      :concepts,
+      :taxes
     )
 
     validates_presence_of(
@@ -35,6 +36,7 @@ module BuhoCfdi
     def initialize(params = {})
       super
       @concepts = []
+      @taxes = Taxes.new
     end
   
     def transmitter=(data)
@@ -80,7 +82,10 @@ module BuhoCfdi
         total: format('%.2f', @total),
         metodoDePago: @payment_method,
         tipoDeComprobante: @proof_type,
-        LugarExpedicion: @expedition_place
+        LugarExpedicion: @expedition_place,
+        Certificado: @certificate,
+        NoCertificado: @certificate_number,
+        Sello: @stamp
       }
     end
 
@@ -112,7 +117,27 @@ module BuhoCfdi
                 end
               end
             end
-          end          
+          end
+           
+          xml.Impuestos do
+            if @taxes.transferred.count > 0
+              xml.Traslados do
+                @taxes.transferred.each do |trans|
+                  xml.Traslado(Impuesto: trans.tax,TipoFactor: trans.factor_type, TasaOCuota: format('%.2f', trans.rate),
+                               Importe: format('%.2f', trans.import))
+                end
+              end
+            end
+            if @taxes.detained.count > 0
+              xml.Retenciones do
+                @taxes.detained.each do |det|
+                  xml.Retencion(impuesto: det.tax, tasa: format('%.2f', det.rate),
+                                importe: format('%.2f', det.import))
+                end
+              end
+            end
+          end
+
         end
       end
       @builder.to_xml
