@@ -1,7 +1,7 @@
 module BuhoCfdi
   require 'openssl'
  
-  class Certificate < OpenSSL::X509::Certificate
+  class Certificate
      
     attr_reader :certificate_number, :data
  
@@ -21,6 +21,6 @@ module BuhoCfdi
       invoice.certificate_number = @certificate_number
       invoice.certificate = @data
     end
-    
+
   end
 end

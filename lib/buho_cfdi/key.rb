@@ -1,7 +1,7 @@
 module BuhoCfdi
   require 'openssl'
    
-  class Key < OpenSSL::PKey::RSA
+  class Key
     def initialize(file, password=nil)
       if file.is_a? String
         file = File.read(file)

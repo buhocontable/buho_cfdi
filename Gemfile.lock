@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    buho_cfdi (0.1.2)
+    buho_cfdi (0.1.1)
       activemodel
 
 GEM
@@ -54,7 +54,7 @@ GEM
     thread_safe (0.3.6)
     tins (1.24.1)
       sync
-    tzinfo (1.2.6)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
     zeitwerk (2.3.0)
 

@@ -7,7 +7,8 @@ module BuhoCfdi
       :code_prod_serv,
       :code_measure_unit,
       :price,
-      :import
+      :import,
+      :taxes,
     )
  
 
@@ -20,7 +21,27 @@ module BuhoCfdi
       :price,
       :import
     )
+
+    def initialize(params = {})
+      super
+      @taxes = Taxes.new
+    end
  
+    def taxes=(data) 
+        data.is_a?(Taxes) ? data : Taxes.new(data)
+        @taxes = data
+    end
+
+    def to_x
+      {
+        ClaveProdServ: @code_prod_serv,
+        Cantidad: @quantity,
+        ClaveUnidad: @code_measure_unit, 
+        Descripcion: @name, 
+        ValorUnitario: @price,
+        Importe: @import
+      }
+    end
 
   end
 end
