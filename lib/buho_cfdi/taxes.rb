@@ -36,5 +36,21 @@ module BuhoCfdi
       @detained
     end
 
+    def total_transferred
+      return 0 unless @transferred.any?
+      @transferred.map(&:import).reduce(:+)
+    end
+
+    # return total of all detained taxes.
+    def total_detained
+      return 0 unless @detained.any?
+      @detained.map(&:import).reduce(:+)
+    end
+
+    def to_x
+      {TotalImpuestosRetenidos: format('%.2f',total_detained.to_f), TotalImpuestosTrasladados: format('%.2f',total_transferred.to_f)}
+    end
+  
+
   end
 end

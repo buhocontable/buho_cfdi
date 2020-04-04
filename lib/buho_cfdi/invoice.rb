@@ -73,19 +73,18 @@ module BuhoCfdi
       {
         'xmlns:cfdi' => 'http://www.sat.gob.mx/cfd/3',
         'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-        'xsi:schemaLocation' => 'http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv32.xsd',
-        version: @version,
-        fecha: @created_at,
-        formaDePago: @payment_way,
-        subTotal: format('%.2f', @subtotal),
+        'xsi:schemaLocation' => 'http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd',
+        Version: @version,
+        Fecha: @created_at,
+        FormaPago: @payment_way,
+        SubTotal: format('%.2f', @subtotal),
         Moneda: @currency,
-        total: format('%.2f', @total),
-        metodoDePago: @payment_method,
-        tipoDeComprobante: @proof_type,
+        Total: format('%.2f', @total),
+        MetodoPago: @payment_method,
+        TipoDeComprobante: @proof_type,
         LugarExpedicion: @expedition_place,
         Certificado: @certificate,
-        NoCertificado: @certificate_number,
-        Sello: @stamp
+        NoCertificado: @certificate_number
       }
     end
 
@@ -110,8 +109,10 @@ module BuhoCfdi
                     concept.taxes.transferred.each do |trans|
                       xml.Traslado(trans.to_x)
                     end
+                  end
+                  xml.Retenciones do                    
                     concept.taxes.detained.each do |trans|
-                      xml.Traslado(trans.to_x)
+                      xml.Retencion(trans.to_x)
                     end
                   end
                 end
@@ -119,20 +120,20 @@ module BuhoCfdi
             end
           end
            
-          xml.Impuestos do
+          xml.Impuestos(@taxes.to_x) do
+            if @taxes.detained.count > 0
+              xml.Retenciones do
+                @taxes.detained.each do |det|
+                  xml.Retencion(Impuesto: det.tax, Importe: format('%.2f', det.import))
+                end
+              end
+            end
+            
             if @taxes.transferred.count > 0
               xml.Traslados do
                 @taxes.transferred.each do |trans|
                   xml.Traslado(Impuesto: trans.tax,TipoFactor: trans.factor_type, TasaOCuota: format('%.2f', trans.rate),
                                Importe: format('%.2f', trans.import))
-                end
-              end
-            end
-            if @taxes.detained.count > 0
-              xml.Retenciones do
-                @taxes.detained.each do |det|
-                  xml.Retencion(impuesto: det.tax, tasa: format('%.2f', det.rate),
-                                importe: format('%.2f', det.import))
                 end
               end
             end

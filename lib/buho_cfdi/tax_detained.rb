@@ -18,11 +18,11 @@ module BuhoCfdi
 
       def to_x
         {
-          base: @base,
-          tax: @tax,
-          rate: @rate,
-          import: @import,
-          factor_type: @factor_type
+          Base: @base,
+          Impuesto: @tax,
+          TasaOCuota: @rate,
+          Importe: @import,
+          TipoFactor: @factor_type
         }
       end
       
