@@ -8,7 +8,7 @@ XML_BUILDING_STRATEGY = lambda do |xml|
     xml.Receptor(Nodes::Receiver.new.to_hash)
 
     xml.Conceptos do
-      xml.Concepto(Nodes::Receiver.new.to_hash) do
+      xml.Concepto(Nodes::Concept.new.to_hash) do
         xml.Impuestos do
           xml.Traslados do
             xml.Traslado(Nodes::TaxTransferred.new.to_hash)
@@ -16,7 +16,7 @@ XML_BUILDING_STRATEGY = lambda do |xml|
         end
       end
 
-      xml.Concepto(Nodes::Receiver.new.to_hash) do
+      xml.Concepto(Nodes::Concept.new.to_hash) do
         xml.Impuestos do
           xml.Traslados do
             xml.Traslado(Nodes::TaxTransferred.new.to_hash)
@@ -25,7 +25,7 @@ XML_BUILDING_STRATEGY = lambda do |xml|
       end
     end
 
-    xml.Impuestos(Nodes::TaxTransferred.new.to_hash) do
+    xml.Impuestos(Nodes::Taxes.new.to_hash) do
       xml.Traslados do
         xml.Traslado(Nodes::Transferred.new.to_hash)
       end

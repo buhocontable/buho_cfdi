@@ -21,14 +21,18 @@ require_relative "buho_cfdi/nodes/transferred"
 
 module BuhoCfdi
   class Processor
-    attr_accessor :strategy, :xml
+    attr_accessor :strategy
 
     def initialize(&strategy)
       @strategy = strategy
     end
 
-    def process!
-      xml = Nokogiri::XML::Builder.new(encoding: 'UTF-8', &strategy)
+    def process
+      resource = Nokogiri::XML::Builder.new(encoding: 'UTF-8', &strategy)
+
+      file = File.new('xml_example.xml', 'w+')
+      file.write(resource.to_xml)
+      file.close
     end
   end
 end
