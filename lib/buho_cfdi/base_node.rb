@@ -1,5 +1,8 @@
+require 'active_model'
+
 module BuhoCfdi
   class BaseNode
+    include ActiveModel::Validations
     attr_accessor :node_hash
 
     def initialize(params = {})
@@ -14,14 +17,23 @@ module BuhoCfdi
 
     def to_hash
       self.class.params.each do |param|
-        node_hash[param] = send(param)
+        node_hash[define_locale(param)] = send(param)
       end
+
+      node_hash
+    end
+
+    private
+
+    def define_locale(param)
+      I18n.t("nodes.#{self.class.name.demodulize.underscore}.#{param}")
     end
 
     class << self
       def attr_accessor(*args)
         @params ||= []
         @params.concat(args)
+        
         super(*args)
       end
 
