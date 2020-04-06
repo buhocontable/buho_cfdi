@@ -1,0 +1,78 @@
+es:
+  nodes:
+    receipt:
+      version: Version 
+      serie: Serie 
+      invoice: Folio 
+      date: Fecha 
+      stamp: Sello 
+      payment_method: FormaPago 
+      certificate_number: NoCertificado 
+      certificate: Certificado 
+      payment_conditions: CondicionesDePago 
+      subtotal: SubTotal 
+      discount: Descuento 
+      currency: Moneda 
+      exchange_rate: TipoCambio 
+      total: Total 
+      type_of_receipt: TipoDeComprobante 
+      payment_method: MetodoPago 
+      expedition_place: LugarExpedicion 
+      confirmation: Confirmacion
+    cfdi_related:
+      relationship_type: TipoRelacion
+    related:
+      uuid: UUID
+    issuer:
+      rfc: Rfc          
+      name: Nombre       
+      fiscal_regime: RegimenFiscal
+    receiver:
+      rfc: Rfc
+      name: Nombre
+      tax_residency: ResidenciaFiscal
+      tax_identity_registration_number: NumRegIdTrib
+      cfdi_usage: UsoCFDI
+    concept:
+      prod_or_svc_key: ClaveProdServ
+      identification_number: NoIdentificacion
+      quantity: Cantidad
+      unit_measure_key: ClaveUnidad
+      unit_measure: Unidad
+      description: Descripcion
+      unit_value: ValorUnitario
+      amount: Importe
+      discount: Descuento
+    tax_transferred:
+      base: Base
+      tax: Impuesto
+      factor_type: TipoFactor
+      rate_or_fee: TasaOCuota
+      import: Importe
+    tax_detained:
+      base: Base
+      tax: Impuesto
+      factor_type: TipoFactor
+      rate_or_fee: TasaOCuota
+      import: Importe
+    customs_information: # InformacionAduanera
+      requirement_number: NumeroPedimento
+    property_account: # CuentaPredial
+      number: Numero
+    part: # Parte
+      prod_or_svc_key: ClaveProdServ
+      identification_number: NoIdentificacion
+      quantity: Cantidad
+      unit_measure: Unidad
+      description: Descripcion
+      unit_value: ValorUnitario
+      amount: Importe
+    taxes: # Impuestos
+      total_taxes_transferred: ClaveProdServ
+      total_taxes_detained: NoIdentificacion
+    detained:
+      tax: Impuesto
+      import: Importe
+    
+
+
