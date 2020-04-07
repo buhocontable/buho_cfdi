@@ -1,0 +1,104 @@
+{
+  "receipt": {
+    "version": "",
+    "serie": "",
+    "invoice": "",
+    "date": "",
+    "stamp": "",
+    "payment_method": "",
+    "certificate_number": "",
+    "certificate": "",
+    "payment_conditions": "",
+    "subtotal": "",
+    "discount": "",
+    "currency": "",
+    "exchange_rate": "",
+    "total": "",
+    "type_of_receipt": "",
+    "payment_method": "",
+    "expedition_place": "",
+    "confirmation": "",
+    "cfdi_related_attributes": {
+      "relationship_type": "",
+      "related_attributes": [
+        {
+          "uuid": ""
+        }
+      ]
+    },
+    "issuer_attributes": {
+      "rfc": "",
+      "name": "",
+      "fiscal_regime": "" 
+    },
+    "receiver_attributes": {
+      "rfc": "",
+      "name": "",
+      "tax_residency": "",
+      "tax_identity_registration_number": "",
+      "cfdi_usage": "" 
+    },
+    "concepts_attributes": [
+      {
+        "prod_or_svc_key": "",
+        "identification_number": "",
+        "quantity": "",
+        "unit_measure_key": "",
+        "unit_measure": "",
+        "description": "",
+        "unit_value": "",
+        "amount": "",
+        "discount": "",
+        "taxes_attributes": {
+          "transferred_attributes": {
+            "base": "",
+            "tax": "",
+            "factor_type": "",
+            "rate_or_fee": "",
+            "import": ""
+          },
+          "detained_attributes": {
+            "base": "",
+            "tax": "",
+            "factor_type": "",
+            "rate_or_fee": "",
+            "import": "" 
+          }
+        },
+        "customs_information": {
+          "requirement_number": ""
+        },
+        "property_account": {
+          "number": ""
+        },
+        "part": {
+          "prod_or_svc_key": "",
+          "identification_number": "",
+          "quantity": "",
+          "unit_measure": "",
+          "description": "",
+          "unit_value": "",
+          "amount": ""
+        }
+      }
+    ],
+    "taxes_attributes": {
+      "total_taxes_transferred": "",
+      "total_taxes_detained": "",
+      "transferred_attributes": [
+        {
+          "tax": "",
+          "factor_type": "",
+          "rate_or_fee": "",
+          "import": "" 
+        }
+      ],
+      "detained_attributes": [
+        {
+          "tax": "",
+          "import": "" 
+        }
+      ]
+    }
+  }
+}
