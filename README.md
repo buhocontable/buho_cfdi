@@ -28,7 +28,7 @@ Create an instance of `BuhoCfdi::XmlProcessor` and pass to it the params.
 buho = BuhoCfdi::XmlProcessor.new(params)
 ```
 
-Then process the xml with the params. `buho` var has all necesary info to create a xml schema. Execute the instance method `#process_xml` that will create a `#cfdi` instance method with all info needed abuot the cfdi and the xml.
+Then process the xml with the params. `buho` var has all necesary info to create a xml schema. Execute the instance method `#process_xml` that will create a `#cfdi` instance method with all info needed about the cfdi and the xml.
 
 ```ruby
 
