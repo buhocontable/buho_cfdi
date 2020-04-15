@@ -22,11 +22,88 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Create an instance of `BuhoCfdi::XmlProcessor` and pass to it the params.
+
+```ruby
+buho = BuhoCfdi::XmlProcessor.new(params)
+```
+
+Then process the xml with the params. `buho` var has all necesary info to create a xml schema. Execute the instance method `#process_xml` that will create a `#cfdi` instance method with all info needed abuot the cfdi and the xml.
+
+```ruby
+
+# => Execute the instance method
+buho.process_xml
+
+# => Access to cfdi object was created
+buho.cfdi
+
+```
+
+To access to the XML string.
+
+```ruby
+
+# =>
+buho.cfdi.to_xml
+
+```
+
+## Params Examples
+
+Format:
+
+```ruby
+params = {
+  "receipt": {
+    "version": "3.3",
+    "serie": "shuhsuhsuhsw",
+    "folio_number": "74777e8e8e",
+    "date": "sjsjjsjs",
+    "stamp": "jsjsjsjjs",
+    "payment_method": "ikskskskis",
+    "certificate_number": "osiskksj",
+    "certificate": "jsjsjsjjsjs",
+    "payment_conditions": "kjsksisosos",
+    "subtotal": "jiksksksks",
+    "discount": "jjjsjsjsjsj",
+    "currency": "jsjksjdhdhd",
+    "exchange_rate": "jsjsjdhdfhd",
+    "total": "isjsxjdjf",
+    "type_of_receipt": "jjsjsjjfd",
+    "payment_method": "jjsjsjsjsd",
+    "expedition_place": "jsjsjsjjs",
+    "confirmation": "jjsjsjsjsjdjd",
+    "cfdi_related_attributes": {
+      "relationship_type": "jhususjujsujdius",
+      "related_attributes": [
+        {
+          "uuid": "ijisjisjisjisjisj"
+        },
+        {
+          "uuid": "ijisjisjisjisjisj"
+        }
+      ]
+    },
+    "issuer_attributes": {
+      "rfc": "hudshududhs",
+      "name": "jdsjidjsijdi",
+      "fiscal_regime": "jdisjdisjid"
+    },
+    "receiver_attributes": {
+      "rfc": "jdisjdisj",
+      "name": "jdsjdijsijds",
+      "tax_residency": "udisjdisjidjisjd",
+      "tax_identity_registration_number": "djisjdisjidjsidjis",
+      "cfdi_usage": "disjdisidisdjs"
+    }
+  }
+}
+```
 
 ## Development
 
-To install this gem onto your local machine, run `bundle exec rake install`. You can also run `irb` for an interactive prompt that will allow you to experiment.
+To install this gem onto your local machine, run `bundle exec rake build` and `bundle exec rake install`. You can also run `irb` for an interactive prompt that will allow you to experiment.
 
 To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 

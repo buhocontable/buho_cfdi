@@ -3,7 +3,7 @@ es:
     receipt:
       version: Version 
       serie: Serie 
-      invoice: Folio 
+      folio_number: Folio
       date: Fecha 
       stamp: Sello 
       payment_method: FormaPago 

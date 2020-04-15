@@ -1,14 +1,13 @@
 module Nodes
   class Receipt < ::BuhoCfdi::BaseNode
-    # DEFAULT = {
-    #   'xmlns:xsi' => 'http://www.w3.org/2001/XMLSchema-instance',
-    #   'xsi:schemaLocation' => 'http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd',
-    # }
+    DEFAULT = {
+      'xsi:schemaLocation' => 'http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd',
+    }
 
     attr_accessor(
       :version,                   # Version             -     required
       :serie,                     # Serie               -     optional
-      :invoice,                   # Folio               -     optional
+      :folio_number,              # Folio               -     optional
       :date,                      # Fecha               -     required
       :stamp,                     # Sello               -     required
       :payment_method,            # FormaPago           -     optional
@@ -36,11 +35,11 @@ module Nodes
       :currency,
       :total,
       :type_of_receipt,
-      :expedition_place,
+      :expedition_place
     )
 
-    # def to_hash
-    #   super.merge! DEFAULT
-    # end
+    def to_hash
+      super.merge! DEFAULT
+    end
   end
 end
