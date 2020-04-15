@@ -1,42 +1,42 @@
 {
   "receipt": {
-    "version": "",
-    "serie": "",
-    "invoice": "",
-    "date": "",
-    "stamp": "",
-    "payment_method": "",
-    "certificate_number": "",
-    "certificate": "",
-    "payment_conditions": "",
-    "subtotal": "",
-    "discount": "",
-    "currency": "",
-    "exchange_rate": "",
-    "total": "",
-    "type_of_receipt": "",
-    "payment_method": "",
-    "expedition_place": "",
-    "confirmation": "",
+    "version": "3.3",
+    "serie": "shuhsuhsuhsw",
+    "invoice": "74777e8e8e",
+    "date": "sjsjjsjs",
+    "stamp": "jsjsjsjjs",
+    "payment_method": "ikskskskis",
+    "certificate_number": "osiskksj",
+    "certificate": "jsjsjsjjsjs",
+    "payment_conditions": "kjsksisosos",
+    "subtotal": "jiksksksks",
+    "discount": "jjjsjsjsjsj",
+    "currency": "jsjksjdhdhd",
+    "exchange_rate": "jsjsjdhdfhd",
+    "total": "isjsxjdjf",
+    "type_of_receipt": "jjsjsjjfd",
+    "payment_method": "jjsjsjsjsd",
+    "expedition_place": "jsjsjsjjs",
+    "confirmation": "jjsjsjsjsjdjd",
     "cfdi_related_attributes": {
-      "relationship_type": "",
+      "relationship_type": "jhususjujsujdius",
       "related_attributes": [
         {
-          "uuid": ""
+          "uuid": "ijisjisjisjisjisj"
         }
       ]
     },
     "issuer_attributes": {
-      "rfc": "",
-      "name": "",
-      "fiscal_regime": "" 
+      "rfc": "hudshududhs",
+      "name": "jdsjidjsijdi",
+      "fiscal_regime": "jdisjdisjid" 
     },
     "receiver_attributes": {
-      "rfc": "",
-      "name": "",
-      "tax_residency": "",
-      "tax_identity_registration_number": "",
-      "cfdi_usage": "" 
+      "rfc": "jdisjdisj",
+      "name": "jdsjdijsijds",
+      "tax_residency": "udisjdisjidjisjd",
+      "tax_identity_registration_number": "djisjdisjidjsidjis",
+      "cfdi_usage": "disjdisidisdjs" 
     },
     "concepts_attributes": [
       {
