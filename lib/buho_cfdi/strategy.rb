@@ -19,81 +19,55 @@ XML_BUILDING_STRATEGY = lambda do |receipt|
 
       xml.Receptor(receipt.nodes_receiver.to_hash) if receipt.nodes_receiver
 
-      xml.Conceptos do
+      if receipt.nodes_concept
+        xml.Conceptos do
+          receipt.nodes_concept.all.each do |concept|
+            xml.Concepto(concept.to_hash) do
+              xml.Impuestos do
+                if concept.nodes_taxtransferred
+                  xml.Traslados do
+                    concept.nodes_taxtransferred.all.each do |transferred|
+                      xml.Traslado(transferred.to_hash)
+                    end
+                  end
+                end
 
-        # receipt.nodes_concept.all.each do |concept|
-        #   xml.Concepto(concept.to_hash) do
-        #     xml.Impuestos do
-        #       xml.Traslados do
-        #         xml.Traslado(Nodes::TaxTransferred.new.to_hash)
-        #         xml.Traslado(Nodes::TaxTransferred.new.to_hash)
-        #       end
+                if concept.nodes_taxdetained
+                  xml.Retenciones do
+                    concept.nodes_taxdetained.all.each do |detained|
+                      xml.Retencion(detained.to_hash)
+                    end
+                  end
+                end
+              end
 
-        #       xml.Retenciones do
-        #         xml.Retencion(Nodes::TaxDetained.new.to_hash)
-        #         xml.Retencion(Nodes::TaxDetained.new.to_hash)
-        #       end
-        #     end
+              xml.InformacionAduanera(concept.nodes_customsinformation.to_hash) if concept.nodes_customsinformation
 
-        #     xml.InformacionAduanera(Nodes::CustomsInformation.new.to_hash)
+              xml.CuentaPredial(concept.nodes_propertyaccount.to_hash) if concept.nodes_propertyaccount
 
-        #     xml.CuentaPredial(Nodes::PropertyAccount.new.to_hash)
-
-        #     xml.Parte(Nodes::Part.new.to_hash)
-        #   end
-
-        # end
-
-        xml.Concepto(Nodes::Concept.new.to_hash) do
-          xml.Impuestos do
-            xml.Traslados do
-              xml.Traslado(Nodes::TaxTransferred.new.to_hash)
-              xml.Traslado(Nodes::TaxTransferred.new.to_hash)
-            end
-
-            xml.Retenciones do
-              xml.Retencion(Nodes::TaxDetained.new.to_hash)
-              xml.Retencion(Nodes::TaxDetained.new.to_hash)
+              xml.Parte(concept.nodes_part.to_hash) if concept.nodes_part
             end
           end
-
-          xml.InformacionAduanera(Nodes::CustomsInformation.new.to_hash)
-
-          xml.CuentaPredial(Nodes::PropertyAccount.new.to_hash)
-
-          xml.Parte(Nodes::Part.new.to_hash)
-        end
-
-        xml.Concepto(Nodes::Concept.new.to_hash) do
-          xml.Impuestos do
-            xml.Traslados do
-              xml.Traslado(Nodes::TaxTransferred.new.to_hash)
-              xml.Traslado(Nodes::TaxTransferred.new.to_hash)
-            end
-
-            xml.Retenciones do
-              xml.Retencion(Nodes::TaxDetained.new.to_hash)
-              xml.Retencion(Nodes::TaxDetained.new.to_hash)
-            end
-          end
-
-          xml.InformacionAduanera(Nodes::CustomsInformation.new.to_hash)
-
-          xml.CuentaPredial(Nodes::PropertyAccount.new.to_hash)
-
-          xml.Parte(Nodes::Part.new.to_hash)
         end
       end
 
-      xml.Impuestos(Nodes::Taxes.new.to_hash) do
-        xml.Traslados do
-          xml.Traslado(Nodes::Transferred.new.to_hash)
-          xml.Traslado(Nodes::Transferred.new.to_hash)
-        end
+      if receipt.nodes_taxes
+        xml.Impuestos(receipt.nodes_taxes.to_hash) do
+          xml.Traslados do
+            if receipt.nodes_taxes.nodes_transferred
+              receipt.nodes_taxes.nodes_transferred.all.each do |transferred|
+                xml.Traslado(transferred.to_hash)
+              end
+            end
+          end
 
-        xml.Retenciones do
-          xml.Retencion(Nodes::Detained.new.to_hash)
-          xml.Retencion(Nodes::Detained.new.to_hash)
+          xml.Retenciones do
+            if receipt.nodes_taxes.nodes_transferred
+              receipt.nodes_taxes.nodes_transferred.all.each do |detained|
+                xml.Retencion(detained.to_hash)
+              end
+            end
+          end
         end
       end
     end

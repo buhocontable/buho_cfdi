@@ -79,23 +79,84 @@ params = {
       "related_attributes": [
         {
           "uuid": "ijisjisjisjisjisj"
-        },
-        {
-          "uuid": "ijisjisjisjisjisj"
         }
       ]
     },
     "issuer_attributes": {
       "rfc": "hudshududhs",
       "name": "jdsjidjsijdi",
-      "fiscal_regime": "jdisjdisjid"
+      "fiscal_regime": "jdisjdisjid" 
     },
     "receiver_attributes": {
       "rfc": "jdisjdisj",
       "name": "jdsjdijsijds",
       "tax_residency": "udisjdisjidjisjd",
       "tax_identity_registration_number": "djisjdisjidjsidjis",
-      "cfdi_usage": "disjdisidisdjs"
+      "cfdi_usage": "disjdisidisdjs" 
+    },
+    "concepts_attributes": [
+      {
+        "prod_or_svc_key": "shusuh",
+        "identification_number": "shusuhuhs",
+        "quantity": "hsuhusuhs",
+        "unit_measure_key": "hsuushuhsuhs",
+        "unit_measure": "hsuhsuhushush",
+        "description": "shshushushush",
+        "unit_value": "suhushuhsuhsu",
+        "amount": "shushuhsuhs",
+        "discount": "shusuush",
+        "transferred_attributes": [
+          {
+            "base": "yysysy",
+            "tax": "uususuus",
+            "factor_type": "sjisjijis",
+            "rate_or_fee": "jsisjijsijs",
+            "import": "jsijsijsij"
+          }
+        ],
+        "detained_attributes": [
+          {
+            "base": "sjisjijsijs",
+            "tax": "sjisjijsijsi",
+            "factor_type": "sjijsijsijsi",
+            "rate_or_fee": "ssijisjisj",
+            "import": "sjijsisijisj" 
+          }
+        ],
+        "customs_information_attributes": {
+          "requirement_number": "ysyhysh"
+        },
+        "property_account_attributes": {
+          "number": "hushuhsuhsu"
+        },
+        "part_attributes": {
+          "prod_or_svc_key": "suhushushuhs",
+          "identification_number": "uhsuhsuhsuhush",
+          "quantity": "hsuhsuhushu",
+          "unit_measure": "hsuhushushu",
+          "description": "shushushush",
+          "unit_value": "shuhushushu",
+          "amount": "suhsuhushushu"
+        }
+      }
+    ],
+    "taxes_attributes": {
+      "total_taxes_transferred": "hushusushuhs",
+      "total_taxes_detained": "hsuhsuhsuhush",
+      "transferred_attributes": [
+        {
+          "tax": "shuhsusuhush",
+          "factor_type": "shusuhsusuhs",
+          "rate_or_fee": "sussuhsuhus",
+          "import": "shuhusuhsuhsu" 
+        }
+      ],
+      "detained_attributes": [
+        {
+          "tax": "hsuhushussh",
+          "import": "suhuhsuhsuhs" 
+        }
+      ]
     }
   }
 }
