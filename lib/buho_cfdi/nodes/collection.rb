@@ -12,10 +12,7 @@ module Nodes
     end
 
     def add(params)
-      instance = klass.new(params)
-      _collection << instance
-
-      instance
+      _collection << klass.new(params)
     end
   end
 end

@@ -13,8 +13,6 @@ module BuhoCfdi
       build_cfdi_related
       build_issuer
       build_receiver
-      build_concepts
-      build_taxes
 
       receipt
     end
@@ -59,67 +57,10 @@ module BuhoCfdi
       end
     end
 
-    def build_concepts
-      if params.include?(:receipt) && params.fetch(:receipt).include?(:concepts_attributes)
-        @receipt.build_children ::Nodes::Concept
+    # def concepts
+    # end
 
-        params.fetch(:receipt).fetch(:concepts_attributes).each do |params|
-
-          concept = @receipt.nodes_concept.add params
-
-          if params.include?(:transferred_attributes)
-            concept.build_children ::Nodes::TaxTransferred
-
-            params.fetch(:transferred_attributes).each do |params|
-              concept.nodes_taxtransferred.add params
-            end
-          end
-
-          if params.include?(:detained_attributes)
-            concept.build_children ::Nodes::TaxDetained
-
-            params.fetch(:detained_attributes).each do |params|
-              concept.nodes_taxdetained.add params
-            end
-          end
-
-          if params.include?(:customs_information_attributes)
-            concept.build_child! ::Nodes::CustomsInformation, params.fetch(:customs_information_attributes)
-          end
-
-          if params.include?(:property_account_attributes)
-            concept.build_child! ::Nodes::PropertyAccount, params.fetch(:property_account_attributes)
-          end
-
-          if params.include?(:part_attributes)
-            concept.build_child! ::Nodes::Part, params.fetch(:part_attributes)
-          end
-        end
-      else
-        nil
-      end
-    end
-
-    def build_taxes
-      if params.include?(:receipt) && params.fetch(:receipt).include?(:taxes_attributes)
-        @receipt.build_child! ::Nodes::Taxes, params.fetch(:receipt).fetch(:taxes_attributes)
-
-        if params.fetch(:receipt).fetch(:taxes_attributes).include?(:transferred_attributes)
-          @receipt.nodes_taxes.build_children ::Nodes::Transferred
-
-          params.fetch(:receipt).fetch(:taxes_attributes).fetch(:transferred_attributes).each do |params|
-            @receipt.nodes_taxes.nodes_transferred.add params
-          end
-        end
-
-        if params.fetch(:receipt).fetch(:taxes_attributes).include?(:detained_attributes)
-          @receipt.nodes_taxes.build_children ::Nodes::Detained
-
-          params.fetch(:receipt).fetch(:taxes_attributes).fetch(:detained_attributes).each do |params|
-            @receipt.nodes_taxes.nodes_detained.add params
-          end
-        end
-      end
-    end
+    # def taxes
+    # end
   end
 end
