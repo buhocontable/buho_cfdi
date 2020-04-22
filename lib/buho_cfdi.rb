@@ -35,9 +35,9 @@ module BuhoCfdi
     def process_xml
       @cfdi = strategy.call(receipt)
 
-      file = File.new('xml_example.xml', 'w+')
-      file.write(cfdi.to_xml)
-      file.close
+      # file = File.new('xml_example.xml', 'w+')
+      # file.write(cfdi.to_xml)
+      # file.close
 
       cfdi
     end
