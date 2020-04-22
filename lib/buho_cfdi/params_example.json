@@ -49,29 +49,31 @@
         "unit_value": "",
         "amount": "",
         "discount": "",
-        "taxes_attributes": {
-          "transferred_attributes": {
-            "base": "",
-            "tax": "",
-            "factor_type": "",
-            "rate_or_fee": "",
-            "import": ""
-          },
-          "detained_attributes": {
-            "base": "",
-            "tax": "",
-            "factor_type": "",
-            "rate_or_fee": "",
-            "import": "" 
+        "transferred_attributes": [
+          {
+            "base": "yysysy",
+            "tax": "uususuus",
+            "factor_type": "sjisjijis",
+            "rate_or_fee": "jsisjijsijs",
+            "import": "jsijsijsij"
           }
-        },
-        "customs_information": {
+        ],
+        "detained_attributes": [
+          {
+            "base": "sjisjijsijs",
+            "tax": "sjisjijsijsi",
+            "factor_type": "sjijsijsijsi",
+            "rate_or_fee": "ssijisjisj",
+            "import": "sjijsisijisj" 
+          }
+        ],
+        "customs_information_attributes": {
           "requirement_number": ""
         },
-        "property_account": {
+        "property_account_attributes": {
           "number": ""
         },
-        "part": {
+        "part_attributes": {
           "prod_or_svc_key": "",
           "identification_number": "",
           "quantity": "",
