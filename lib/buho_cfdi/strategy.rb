@@ -62,8 +62,8 @@ XML_BUILDING_STRATEGY = lambda do |receipt|
           end
 
           xml.Retenciones do
-            if receipt.nodes_taxes.nodes_transferred
-              receipt.nodes_taxes.nodes_transferred.all.each do |detained|
+            if receipt.nodes_taxes.nodes_detained
+              receipt.nodes_taxes.nodes_detained.all.each do |detained|
                 xml.Retencion(detained.to_hash)
               end
             end
