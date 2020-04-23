@@ -68,8 +68,8 @@ es:
       unit_value: ValorUnitario
       amount: Importe
     taxes: # Impuestos
-      total_taxes_transferred: ClaveProdServ
-      total_taxes_detained: NoIdentificacion
+      total_taxes_transferred: TotalImpuestosTrasladados
+      total_taxes_detained: TotalImpuestosRetenidos
     detained:
       tax: Impuesto
       import: Importe
