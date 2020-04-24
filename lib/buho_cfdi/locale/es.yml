@@ -6,7 +6,7 @@ es:
       folio_number: Folio
       date: Fecha 
       stamp: Sello 
-      payment_method: FormaPago 
+      payment_way: FormaPago 
       certificate_number: NoCertificado 
       certificate: Certificado 
       payment_conditions: CondicionesDePago 

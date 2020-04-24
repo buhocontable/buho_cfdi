@@ -17,7 +17,7 @@ module BuhoCfdi
 
     def to_hash
       self.class.params.each do |param|
-        node_hash[define_locale(param)] = send(param)
+        node_hash[define_locale(param)] = send(param) unless send(param).blank?
       end
 
       node_hash
