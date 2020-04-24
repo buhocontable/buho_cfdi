@@ -10,7 +10,7 @@ module Nodes
       :folio_number,              # Folio               -     optional
       :date,                      # Fecha               -     required
       :stamp,                     # Sello               -     required
-      :payment_way,               # FormaPago           -     optional
+      :payment_method,            # FormaPago           -     optional
       :certificate_number,        # NoCertificado       -     required
       :certificate,               # Certificado         -     required
       :payment_conditions,        # CondicionesDePago   -     optional

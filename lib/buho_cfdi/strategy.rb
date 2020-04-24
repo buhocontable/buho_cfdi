@@ -3,8 +3,8 @@ XML_BUILDING_STRATEGY = lambda do |receipt|
     xml.Comprobante(receipt.to_hash) do
       xml.doc.root.namespace = xml.doc.root.add_namespace_definition('cfdi', 'http://www.sat.gob.mx/cfd/3')
       xml.doc.root.add_namespace_definition('xsi', 'http://www.w3.org/2001/XMLSchema-instance')
- 
-      if defined? receipt.nodes_cfdirelated
+
+      if receipt.nodes_cfdirelated
         xml.CfdiRelacionados(receipt.nodes_cfdirelated.to_hash) do
 
           if receipt.nodes_cfdirelated.nodes_related
@@ -41,11 +41,11 @@ XML_BUILDING_STRATEGY = lambda do |receipt|
                 end
               end
 
-              xml.InformacionAduanera(concept.nodes_customsinformation.to_hash) if defined? concept.nodes_customsinformation
+              xml.InformacionAduanera(concept.nodes_customsinformation.to_hash) if concept.nodes_customsinformation
 
-              xml.CuentaPredial(concept.nodes_propertyaccount.to_hash) if defined? concept.nodes_propertyaccount
+              xml.CuentaPredial(concept.nodes_propertyaccount.to_hash) if concept.nodes_propertyaccount
 
-              xml.Parte(concept.nodes_part.to_hash) if defined?  concept.nodes_part
+              xml.Parte(concept.nodes_part.to_hash) if concept.nodes_part
             end
           end
         end
@@ -53,17 +53,18 @@ XML_BUILDING_STRATEGY = lambda do |receipt|
 
       if receipt.nodes_taxes
         xml.Impuestos(receipt.nodes_taxes.to_hash) do
-          xml.Retenciones do
-            if receipt.nodes_taxes.nodes_detained
-              receipt.nodes_taxes.nodes_detained.all.each do |detained|
-                xml.Retencion(detained.to_hash)
-              end
-            end
-          end
           xml.Traslados do
             if receipt.nodes_taxes.nodes_transferred
               receipt.nodes_taxes.nodes_transferred.all.each do |transferred|
                 xml.Traslado(transferred.to_hash)
+              end
+            end
+          end
+
+          xml.Retenciones do
+            if receipt.nodes_taxes.nodes_detained
+              receipt.nodes_taxes.nodes_detained.all.each do |detained|
+                xml.Retencion(detained.to_hash)
               end
             end
           end
