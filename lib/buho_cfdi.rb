@@ -21,6 +21,8 @@ require_relative "buho_cfdi/nodes/transferred"
 
 require "buho_cfdi/params_builder"
 require "buho_cfdi/strategy"
+require "buho_cfdi/certificate"
+require "buho_cfdi/key"
 
 module BuhoCfdi
   class XmlProcessor
