@@ -7,7 +7,7 @@ module BuhoCfdi
 
     def initialize(file, password=nil)
       if file.is_a? String
-        @private_key = File.read(file)
+        @private_key = file
       end
     end
 
@@ -19,8 +19,8 @@ module BuhoCfdi
     end
 
     def generate_seal(xml)
-      chain     = original_chain(xml)
-      key = OpenSSL::PKey::RSA.new(@private_key)
+      chain       = original_chain(xml)
+      key         = OpenSSL::PKey::RSA.new(@private_key)
       digester    = OpenSSL::Digest::SHA256.new
       signature   = key.sign(digester, chain)
       signature   = Base64.strict_encode64(signature)
@@ -29,7 +29,7 @@ module BuhoCfdi
 
     def original_chain(invoice)
         invoice   = invoice
-        xslt      = Nokogiri::XSLT(File.read('../cadenaoriginal_3_3.xslt'))
+        xslt      = Nokogiri::XSLT(File.read('storage/xslt/cadenaoriginal_3_3.xslt'))
         chain     = xslt.transform(invoice)
         chain.text.gsub("\n","")
     end
