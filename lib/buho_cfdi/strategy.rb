@@ -23,7 +23,7 @@ XML_BUILDING_STRATEGY = lambda do |receipt|
         xml.Conceptos do
           receipt.nodes_concept.all.each do |concept|
             xml.Concepto(concept.to_hash) do
-              if (defined? concept.nodes_taxtransferred) || (defined? concept.nodes_taxdetained)
+              if ((defined? concept.nodes_taxtransferred) && concept.nodes_taxtransferred ) || ((defined? concept.nodes_taxdetained) && concept.nodes_taxdetained)
                 xml.Impuestos do
                   if (defined? concept.nodes_taxtransferred) && concept.nodes_taxtransferred
                     xml.Traslados do
@@ -55,14 +55,14 @@ XML_BUILDING_STRATEGY = lambda do |receipt|
 
       if defined? receipt.nodes_taxes
         xml.Impuestos(receipt.nodes_taxes.to_hash) do
-          if (defined? receipt.nodes_taxes.nodes_detained)
+          if ((defined? receipt.nodes_taxes.nodes_detained) && receipt.nodes_taxes.nodes_detained)
             xml.Retenciones do
               receipt.nodes_taxes.nodes_detained.all.each do |detained|
                 xml.Retencion(detained.to_hash)
               end
             end
           end
-          if (defined? receipt.nodes_taxes.nodes_transferred)
+          if ((defined? receipt.nodes_taxes.nodes_transferred) && receipt.nodes_taxes.nodes_transferred)
             xml.Traslados do
               receipt.nodes_taxes.nodes_transferred.all.each do |transferred|
                 xml.Traslado(transferred.to_hash)
