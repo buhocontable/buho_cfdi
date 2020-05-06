@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    buho_cfdi (0.1.8)
+    buho_cfdi (0.1.12)
       activemodel (~> 5.2.3)
       nokogiri (~> 1.6, >= 1.6.8)
 
