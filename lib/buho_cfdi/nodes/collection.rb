@@ -1,6 +1,6 @@
 module Nodes
   class Collection
-    attr_accessor :_collection, :klass
+    attr_reader :_collection, :klass
 
     def initialize(klass)
       @klass = klass
