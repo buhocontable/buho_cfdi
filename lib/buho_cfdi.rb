@@ -72,7 +72,7 @@ module BuhoCfdi
     end
 
     def xml_cancellation_builder
-      @cancellation = BuhoCfdi::CancellationBuilder.new(params).receipt
+      @cancellation = BuhoCfdi::CancellationBuilder.new(params).cancellation
     end
   end
 end
