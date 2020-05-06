@@ -21,44 +21,51 @@ require_relative "buho_cfdi/nodes/transferred"
 require_relative "buho_cfdi/nodes/cancellation"
 require_relative "buho_cfdi/nodes/uuid"
 
-require "buho_cfdi/params_builder"
 require "buho_cfdi/cancellation_builder"
-require "buho_cfdi/stamp_strategy"
 require "buho_cfdi/cancellation_strategy"
+require "buho_cfdi/stamp_strategy"
+require "buho_cfdi/params_builder"
 require "buho_cfdi/certificate"
 require "buho_cfdi/key"
 
 module BuhoCfdi
   class XmlProcessor
-    attr_accessor :stapm_strategy, :cancellation_strategy, :receipt, :cancellation, :cfdi, :params
+    attr_accessor(
+      :stamp_strategy,
+      :receipt,
+      :cancellation_strategy,
+      :cancellation,
+      :cfdi,
+      :params
+    )
 
     def initialize(params)
       @params = params
-      @stapm_strategy = STAMP_STRATEGY
+      @stamp_strategy = STAMP_STRATEGY
       @cancellation_strategy = CANCELLATION_STRATEGY
     end
 
     def process_xml
-      @cfdi = stapm_strategy.call(receipt)
-
-      # file = File.new('xml_example.xml', 'w+')
-      # file.write(cfdi.to_xml)
-      # file.close
+      xml_params_builder
+      @cfdi = stamp_strategy.call(receipt)
 
       cfdi
     end
 
     def process_cancellation
+      xml_cancellation_builder
       @cfdi = cancellation_strategy.call(cancellation)
-
-      # file = File.new('xml_example.xml', 'w+')
-      # file.write(cfdi.to_xml)
-      # file.close
 
       cfdi
     end
 
-    private 
+    private
+
+    def create_temp_xml_file
+      file = File.new('xml_example.xml', 'w+')
+      file.write(cfdi.to_xml)
+      file.close
+    end
 
     def xml_params_builder
       @receipt = BuhoCfdi::ParamsBuilder.new(params).receipt
@@ -67,8 +74,5 @@ module BuhoCfdi
     def xml_cancellation_builder
       @cancellation = BuhoCfdi::CancellationBuilder.new(params).receipt
     end
-
   end
-
-  
 end
