@@ -105,14 +105,15 @@
   }
 }
 
+
 {
-  "cancellation":{
-    "date":"",
-    "rfc":"",
-    "uuid_attributes":[
-      {"uuid": ""},
-      {"uuid": ""},
-      {"uuid": ""}
+  "cancellation": {
+    "date": "",
+    "rfc": "",
+    "uuid_attributes": [
+      { "uuid": "" },
+      { "uuid": "" },
+      { "uuid": "" }
     ]
   }
 }

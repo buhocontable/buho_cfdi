@@ -1,4 +1,6 @@
 RSpec.describe BuhoCfdi::CancellationBuilder do
+  it { should respond_to(:params) }
+  it { should respond_to(:cancellation) }
 
   let :params do 
     {
@@ -14,7 +16,7 @@ RSpec.describe BuhoCfdi::CancellationBuilder do
     }
   end
 
-  subject{BuhoCfdi::CancellationBuilder.new(params)}
+  subject{ BuhoCfdi::CancellationBuilder.new(params) }
 
   describe "#params" do
     it "is expected that return a kind of Hash" do
@@ -30,13 +32,14 @@ RSpec.describe BuhoCfdi::CancellationBuilder do
     end
 
     context "with invalid params" do
-      subject{BuhoCfdi::CancellationBuilder.new(version: "3.3")}
+      subject{ BuhoCfdi::CancellationBuilder.new(version: "3.3") }
 
       it "is expected that return nil" do
         expect(subject.build_cancellation).to be_nil
       end
     end
   end
+
   describe "#cancellation" do
     context "with params cancellation" do
       it "is expected that return a kind of Nodes::Cancellation" do

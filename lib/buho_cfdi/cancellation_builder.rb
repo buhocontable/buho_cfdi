@@ -1,7 +1,7 @@
 module BuhoCfdi
   class CancellationBuilder
 
-    attr_accessor :params,:cancellation
+    attr_accessor :params, :cancellation
 
     def initialize(params)
       @params = params
