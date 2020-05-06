@@ -1,4 +1,4 @@
-XML_BUILDING_STRATEGY = lambda do |receipt|
+STAMP_STRATEGY = lambda do |receipt|
   Nokogiri::XML::Builder.new do |xml|
     xml.Comprobante(receipt.to_hash) do
       xml.doc.root.namespace = xml.doc.root.add_namespace_definition('cfdi', 'http://www.sat.gob.mx/cfd/3')

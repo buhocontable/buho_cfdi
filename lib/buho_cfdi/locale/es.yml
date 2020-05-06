@@ -78,6 +78,11 @@ es:
       factor_type: TipoFactor
       rate_or_fee: TasaOCuota
       import: Importe
+    cancellation:
+      date: Fecha
+      rfc: RfcEmisor
+    uuid:
+      uuid: UUID
     
 
 
