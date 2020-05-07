@@ -4,13 +4,13 @@ CANCELLATION_STRATEGY = lambda do |cancellation|
 
       xml.doc.root.add_namespace_definition('xsd', 'http://www.w3.org/2001/XMLSchema')
       xml.doc.root.add_namespace_definition('xsi', 'http://www.w3.org/2001/XMLSchema-instance')
-      xml.doc.root.add_namespace_definition('xmlns', 'http://cancelacfd.sat.gob.mx')
+      xml.doc.root.set_attribute('xmlns', 'http://cancelacfd.sat.gob.mx')
  
       #if ((defined? receipt.nodes_cfdirelated) && receipt.nodes_cfdirelated)
         xml.Folios do
           #if receipt.nodes_cfdirelated.nodes_related
-            cancellation.nodes_uuid.all.each do |uuid|
-              xml.UUID{uuid}
+            cancellation.nodes_uuid.all.each do |node_uuid|
+              xml.UUID node_uuid.uuid
             end
           #end
         end
