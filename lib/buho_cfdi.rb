@@ -20,11 +20,25 @@ require_relative "buho_cfdi/nodes/detained"
 require_relative "buho_cfdi/nodes/transferred"
 require_relative "buho_cfdi/nodes/cancellation"
 require_relative "buho_cfdi/nodes/uuid"
+require_relative "buho_cfdi/nodes/payroll"
+require_relative "buho_cfdi/nodes/payroll_issuer"
+require_relative "buho_cfdi/nodes/payroll_receiver"
+require_relative "buho_cfdi/nodes/perceptions"
+require_relative "buho_cfdi/nodes/perception"
+require_relative "buho_cfdi/nodes/deductions"
+require_relative "buho_cfdi/nodes/deduction"
+require_relative "buho_cfdi/nodes/employment_subsidy"
+require_relative "buho_cfdi/nodes/incapacity"
+require_relative "buho_cfdi/nodes/other_payment"
+require_relative "buho_cfdi/nodes/payroll_extra_hours"
+require_relative "buho_cfdi/nodes/payroll_receipt"
 
 require "buho_cfdi/cancellation_builder"
 require "buho_cfdi/cancellation_strategy"
 require "buho_cfdi/stamp_strategy"
+require "buho_cfdi/payroll_strategy"
 require "buho_cfdi/params_builder"
+require "buho_cfdi/payroll_builder"
 require "buho_cfdi/certificate"
 require "buho_cfdi/key"
 
@@ -35,6 +49,8 @@ module BuhoCfdi
       :receipt,
       :cancellation_strategy,
       :cancellation,
+      :payroll_strategy,
+      :payroll_receipt,
       :cfdi,
       :params
     )
@@ -43,6 +59,7 @@ module BuhoCfdi
       @params = params
       @stamp_strategy = STAMP_STRATEGY
       @cancellation_strategy = CANCELLATION_STRATEGY
+      @payroll_strategy = PAYROLL_STRATEGY
     end
 
     def process_xml
@@ -56,6 +73,12 @@ module BuhoCfdi
       xml_cancellation_builder
       @cfdi = cancellation_strategy.call(cancellation)
 
+      cfdi
+    end
+
+    def process_payroll
+      xml_payroll_builder
+      @cfdi = payroll_strategy.call(payroll_receipt)
       cfdi
     end
 
@@ -74,5 +97,10 @@ module BuhoCfdi
     def xml_cancellation_builder
       @cancellation = BuhoCfdi::CancellationBuilder.new(params).cancellation
     end
+
+    def xml_payroll_builder
+      @payroll_receipt = BuhoCfdi::PayrollBuilder.new(params).payroll_receipt
+    end
+
   end
 end

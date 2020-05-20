@@ -83,6 +83,87 @@ es:
       rfc: RfcEmisor
     uuid:
       uuid: UUID
-    
-
+    payroll:
+      version: Version
+      payroll_type: TipoNomina
+      payment_date: FechaPago
+      payment_start_date: FechaInicialPago
+      payment_end_date: FechaFinalPago
+      number_days_paid: NumDiasPagados
+      total_perceptions: TotalPercepciones
+      total_deductions: TotalDeducciones
+      total_other_payments: TotalOtrosPagos
+    payroll_issuer:
+      curp: Curp
+      employer_registration: RegistroPatronal
+      rfc_origin_employer: RfcPatronOrigen
+    payroll_receiver:
+      curp: Curp
+      social_security_number: NumSeguridadSocial
+      start_date_employment_relationship: FechaInicioRelLaboral
+      antiquity: "Antigüedad"
+      contract_type: TipoContrato
+      unionized: Sindicalizado
+      workday_type: TipoJornada
+      regimen_type: TipoRegimen
+      employee_number: NumEmpleado
+      department: Departamento
+      job: Puesto
+      risk_position: RiesgoPuesto
+      payment_frequency: PeriodicidadPago
+      bank: Banco
+      bank_account: CuentaBancaria
+      base_salary_contribution: SalarioBaseCotApor
+      integrated_daily_wage: SalarioDiarioIntegrado
+      federal_entity_key: ClaveEntFed
+    perceptions:
+      total_salaries: TotalSueldos
+      total_separation_compensation: TotalSeparacionIndemnizacion
+      total_retirement_pension: TotalJubilacionPensionRetiro
+      total_taxed: TotalGravado
+      total_exempt: TotalExento
+    perception:
+      perception_type: TipoPercepcion
+      perception_key: Clave
+      concept: Concepto
+      amount_taxed: ImporteGravado
+      amount_exempt: ImporteExento
+    deductions:
+      total_other_deductions: TotalOtrasDeducciones
+      total_taxes_detained:   TotalImpuestosRetenidos
+    deduction:
+      deduction_type: TipoDeduccion
+      deduction_key: Clave
+      concept: Concepto
+      amount: Importe
+    other_payment:
+      other_payment_type: TipoOtroPago
+      other_payment_key: Clave
+      concept: Concepto
+      amount: Importe
+    incapacity:
+      days_disability: DiasIncapacidad
+      incapacity_type: TipoIncapacidad
+      monetary_amount: ImporteMonetario
+    payroll_receipt:
+      version: Version 
+      serie: Serie 
+      folio_number: Folio
+      date: Fecha 
+      stamp: Sello 
+      payment_way: FormaPago 
+      certificate_number: NoCertificado 
+      certificate: Certificado 
+      payment_conditions: CondicionesDePago 
+      subtotal: SubTotal 
+      discount: Descuento 
+      currency: Moneda 
+      exchange_rate: TipoCambio 
+      total: Total 
+      type_of_receipt: TipoDeComprobante 
+      payment_method: MetodoPago 
+      expedition_place: LugarExpedicion 
+      confirmation: Confirmacion
+    employment_subsidy:
+        subsidy_caused: SubsidioCausado
 
