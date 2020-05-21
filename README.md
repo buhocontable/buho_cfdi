@@ -2,7 +2,7 @@
 
 CFDI generator for 3.3 version.
 
-[![Build Status](https://travis-ci.com/buhocontable/buho_cfdi.svg?token=pvfqse1g1Y1nVGRwY4DL&branch=master)](https://travis-ci.com/buhocontable/buho_cfdi) [![Coverage Status](https://coveralls.io/repos/github/buhocontable/buho_cfdi/badge.svg?branch=master)](https://coveralls.io/github/buhocontable/buho_cfdi?branch=master)
+[![Build Status](https://travis-ci.com/buhocontable/buho_cfdi.svg?token=pvfqse1g1Y1nVGRwY4DL&branch=master)](https://travis-ci.com/buhocontable/buho_cfdi) [![Coverage Status](https://coveralls.io/repos/github/buhocontable/buho_cfdi/badge.svg?branch=master)](https://coveralls.io/github/buhocontable/buho_cfdi?branch=master) [![Gem Version](https://badge.fury.io/rb/buho_cfdi.svg)](https://badge.fury.io/rb/buho_cfdi)
 
 ## Installation
 
@@ -21,6 +21,8 @@ Or install it yourself as:
     $ gem install buho_cfdi
 
 ## Usage
+
+### Stamp
 
 Create an instance of `BuhoCfdi::XmlProcessor` and pass to it the params.
 
@@ -49,7 +51,7 @@ buho.cfdi.to_xml
 
 ```
 
-## Params Examples
+### Stamp Params Examples
 
 Format:
 
@@ -160,6 +162,57 @@ params = {
     }
   }
 }
+```
+
+### Cancel Params Examples
+
+Format:
+
+```ruby
+params = {
+  {
+    "cancellation": {
+      "date": "",
+      "rfc": "",
+      "uuid_attributes": [
+        { "uuid": "" },
+        { "uuid": "" },
+        { "uuid": "" }
+      ]
+    }
+  }
+}
+```
+
+## Usage
+
+### Cancellation
+
+Create an instance of `BuhoCfdi::XmlProcessor` and pass to it the params.
+
+```ruby
+buho = BuhoCfdi::XmlProcessor.new(params)
+```
+
+Then process the xml with the params. `buho` var has all necesary info to create a xml schema. Execute the instance method `#process_cancellation` that will create a `#cfdi` instance method with all info needed about the cfdi and the xml.
+
+```ruby
+
+# => Execute the instance method
+buho.process_cancellation
+
+# => Access to cfdi object was created
+buho.cfdi
+
+```
+
+To access to the XML string.
+
+```ruby
+
+# =>
+buho.cfdi.to_xml
+
 ```
 
 ## Development
