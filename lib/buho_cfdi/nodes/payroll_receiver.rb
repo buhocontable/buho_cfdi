@@ -2,17 +2,17 @@ module Nodes
   class PayrollReceiver < ::BuhoCfdi::BaseNode
     attr_accessor(
       :curp,                                # Curp                   -   required
-      :social_security_number,              # NumSeguridadSocial     -   optional
+      :imss,                                # NumSeguridadSocial     -   optional
       :start_date_employment_relationship,  # FechaInicioRelLaboral  -   optional
       :antiquity,                           # Antigüedad             -   required
       :contract_type,                       # TipoContrato           -   required
       :unionized,                           # Sindicalizado          -   required
-      :workday_type,                        # TipoJornada            -   required
-      :regimen_type,                        # TipoRegimen            -   required
+      :workday_shift,                       # TipoJornada            -   required
+      :regime_type,                         # TipoRegimen            -   required
       :employee_number,                     # NumEmpleado            -   required
       :department,                          # Departamento           -   required
       :job,                                 # Puesto                 -   required
-      :risk_position,                       # RiesgoPuesto           -   required
+      :risk_class,                          # RiesgoPuesto           -   required
       :payment_frequency,                   # PeriodicidadPago       -   required
       :bank,                                # Banco                  -   optional
       :bank_account,                        # CuentaBancaria         -   optional
@@ -23,16 +23,16 @@ module Nodes
 
     validates_presence_of(
       :curp, 
-      :social_security_number,
+      :imss,
       :start_date_employment_relationship,
       :antiquity,
       :contract_type,
       :unionized,
-      :workday_type,
-      :regimen_type,
+      :workday_shift,
+      :regime_type,
       :employee_number,
       :job,
-      :risk_position,
+      :risk_class,
       :payment_frequency,
       :base_salary_contribution,
       :integrated_daily_wage,

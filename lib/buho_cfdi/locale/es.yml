@@ -99,17 +99,17 @@ es:
       rfc_origin_employer: RfcPatronOrigen
     payroll_receiver:
       curp: Curp
-      social_security_number: NumSeguridadSocial
+      imss: NumSeguridadSocial
       start_date_employment_relationship: FechaInicioRelLaboral
       antiquity: "Antigüedad"
       contract_type: TipoContrato
       unionized: Sindicalizado
-      workday_type: TipoJornada
-      regimen_type: TipoRegimen
+      workday_shift: TipoJornada
+      regime_type: TipoRegimen
       employee_number: NumEmpleado
       department: Departamento
       job: Puesto
-      risk_position: RiesgoPuesto
+      risk_class: RiesgoPuesto
       payment_frequency: PeriodicidadPago
       bank: Banco
       bank_account: CuentaBancaria
