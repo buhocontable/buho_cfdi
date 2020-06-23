@@ -123,4 +123,127 @@ module CfdiParamsHelper
     }
   end
 
+  def payroll_params
+    {
+      "receipt": {
+        "version": "3.3",
+        "date": "2020-05-12T18:12:27",
+        "payment_way": "01",
+        "subtotal": "10000.00",
+        "currency": "MXN",
+        "total": "11600.00",
+        "type_of_receipt": "I",
+        "payment_method": "PUE",
+        "expedition_place": "63700",
+        "issuer_attributes": {
+          "rfc": "EKU9003173C9",
+          "name": "Escuela Kemper Urgate",
+          "fiscal_regime": "601"
+        },
+        "receiver_attributes": {
+          "rfc": "TIP180917FI0",
+          "name": "Cliente Prueba SA de CV",
+          "cfdi_usage": "G01"
+        },
+        "concepts_attributes": [
+          {
+            "prod_or_svc_key": "50151604",
+            "identification_number": 5,
+            "quantity": "1",
+            "unit_measure_key": "KGM",
+            "unit_measure": "Kilogramo",
+            "description": "Producto prueba",
+            "unit_value": "10000",
+            "amount": "10000.00"
+          }
+        ],
+        "payroll_attributes": {
+          "version": "1.2",
+          "payroll_type": "O",
+          "payment_date": "2020-02-29",
+          "payment_start_date": "2020-02-23",
+          "payment_end_date": "2020-02-29",
+          "number_days_paid": "7.600",
+          "total_perceptions": "15988.00",
+          "total_deductions": "3182.87",
+          "total_other_payments": "286.85",
+          "issuer_attributes": {
+            "employer_registration": "Y7021761106"
+          },
+          "receiver_attributes": {
+            "curp": "GAGE780522HCSLRD01",
+            "imss": "59774652040",
+            "start_date_employment_relationship": "1994-05-05",
+            "antiquity": "P1347W",
+            "contract_type": "01",
+            "unionized": "No",
+            "workday_shift": "01",
+            "regime_type": "02",
+            "employee_number": "5",
+            "department": "PRODUCTO",
+            "job": "AUXILIAR",
+            "risk_class": "2",
+            "payment_frequency": "02",
+            "base_salary_contribution": "as",
+            "integrated_daily_wage": "137.10",
+            "federal_entity_key": "CAM"
+          },
+          "perceptions_attributes":{
+            "total_salaries": "15988",
+            "total_taxed": "15988",
+            "total_exempt": "0",
+            "perception_attributes": [
+              {
+                "perception_type": "001",
+                "perception_key": "P001",
+                "concept": "SUELDO",
+                "amount_taxed": "988.00",
+                "amount_exempt": "0.00"
+              },
+              {
+                "perception_type": "028",
+                "perception_key": "P002",
+                "concept": "COMISIONES",
+                "amount_taxed": "15000.00",
+                "amount_exempt": "0.00"
+              }
+            ]
+          },
+          "deductions_attributes":{
+            "total_other_deductions": "15988",
+            "total_taxes_detained": "15988",
+            "deduction_attributes": [
+              {
+                "deduction_type": "001",
+                "deduction_key": "P001",
+                "concept": "SUELDO",
+                "amount": "988.00"
+              },
+              {
+                "deduction_type": "001",
+                "deduction_key": "P001",
+                "concept": "SUELDO",
+                "amount": "988.00"
+              }
+            ]
+          },
+          "other_payment_attributes": [
+            {
+              "other_payment_type": "001",
+              "other_payment_key": "P001",
+              "concept": "SUELDO",
+              "amount": "988.00"
+            },
+            {
+              "other_payment_type": "001",
+              "other_payment_key": "P001",
+              "concept": "SUELDO",
+              "amount": "988.00"
+            }
+          ],
+        }
+      }
+    }
+  end
+
 end

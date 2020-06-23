@@ -101,4 +101,38 @@ RSpec.describe BuhoCfdi::XmlProcessor do
       end
     end
   end
+
+  context "generate a XML kind of payroll" do 
+
+    let :params do
+      payroll_params
+    end
+
+    subject{ BuhoCfdi::XmlProcessor.new(params) }
+
+    describe '#process_payroll' do
+
+      it "is expected to be kind of Nokogiri::XML::Builder" do
+        expect(subject.process_payroll).to be_kind_of(Nokogiri::XML::Builder)
+      end
+    end
+
+    describe '#payroll' do
+      before { subject.process_payroll }
+
+      it "is expected to be kind of Nodes::PayrollReceipt" do 
+        expect(subject.payroll_receipt).to be_kind_of(Nodes::PayrollReceipt)
+      end
+    end
+
+    describe '#cfdi' do
+      before { subject.process_payroll }
+
+      it 'is expected to be kind of BuhoCfdi::ParamsBuilder' do
+        expect(subject.cfdi).to be_kind_of(Nokogiri::XML::Builder)
+      end
+    end
+
+  end
+
 end
