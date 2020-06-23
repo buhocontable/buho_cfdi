@@ -164,26 +164,6 @@ params = {
 }
 ```
 
-### Cancel Params Examples
-
-Format:
-
-```ruby
-params = {
-  {
-    "cancellation": {
-      "date": "",
-      "rfc": "",
-      "uuid_attributes": [
-        { "uuid": "" },
-        { "uuid": "" },
-        { "uuid": "" }
-      ]
-    }
-  }
-}
-```
-
 ## Usage
 
 ### Cancellation
@@ -213,6 +193,26 @@ To access to the XML string.
 # =>
 buho.cfdi.to_xml
 
+```
+
+### Cancel Params Examples
+
+Format:
+
+```ruby
+params = {
+  {
+    "cancellation": {
+      "date": "",
+      "rfc": "",
+      "uuid_attributes": [
+        { "uuid": "" },
+        { "uuid": "" },
+        { "uuid": "" }
+      ]
+    }
+  }
+}
 ```
 
 ## Development
