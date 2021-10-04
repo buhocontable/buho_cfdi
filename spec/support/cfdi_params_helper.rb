@@ -8,7 +8,6 @@ module CfdiParamsHelper
         "folio_number": "74777e8e8e",
         "date": "sjsjjsjs",
         "stamp": "jsjsjsjjs",
-        "payment_method": "ikskskskis",
         "certificate_number": "osiskksj",
         "certificate": "jsjsjsjjsjs",
         "payment_conditions": "kjsksisosos",
