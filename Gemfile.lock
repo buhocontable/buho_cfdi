@@ -30,10 +30,8 @@ GEM
       concurrent-ruby (~> 1.0)
     json (2.5.1)
     method_source (1.0.0)
-    mini_portile2 (2.6.1)
     minitest (5.14.4)
-    nokogiri (1.12.4)
-      mini_portile2 (~> 2.6.1)
+    nokogiri (1.12.5-x86_64-linux)
       racc (~> 1.4)
     pry (0.13.1)
       coderay (~> 1.1)
@@ -71,11 +69,11 @@ GEM
     zeitwerk (2.4.2)
 
 PLATFORMS
-  ruby
+  x86_64-linux
 
 DEPENDENCIES
   buho_cfdi!
-  bundler (~> 1.17)
+  bundler (~> 2.2.4)
   coveralls
   pry (~> 0.13.0)
   rake (>= 12.3.3)
@@ -83,4 +81,4 @@ DEPENDENCIES
   shoulda-matchers (~> 4.3)
 
 BUNDLED WITH
-   1.17.3
+   2.2.4
