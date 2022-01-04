@@ -168,5 +168,5 @@ es:
         subsidy_caused: SubsidioCausado
     uuid:
       reason: Motivo
-      replacement_uuid: FolioSustituto
+      replacement_uuid: FolioSustitucion
       uuid: UUID
