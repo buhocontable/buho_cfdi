@@ -166,4 +166,7 @@ es:
       confirmation: Confirmacion
     employment_subsidy:
         subsidy_caused: SubsidioCausado
-
+    uuid:
+      reason: Motivo
+      replacement_uuid: FolioSustituto
+      uuid: UUID

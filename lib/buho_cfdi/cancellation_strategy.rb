@@ -10,13 +10,11 @@ CANCELLATION_STRATEGY = lambda do |cancellation|
         xml.Folios do
           #if receipt.nodes_cfdirelated.nodes_related
             cancellation.nodes_uuid.all.each do |node_uuid|
-              xml.UUID node_uuid.uuid
+              xml.Folio(node_uuid.to_hash)
             end
           #end
         end
       #end
- 
-  
     end
   end
 end
