@@ -19,6 +19,7 @@ es:
       payment_method: MetodoPago 
       expedition_place: LugarExpedicion 
       confirmation: Confirmacion
+      export_code: c_Exportacion
     cfdi_related:
       relationship_type: TipoRelacion
     related:
@@ -33,6 +34,7 @@ es:
       tax_residency: ResidenciaFiscal
       tax_identity_registration_number: NumRegIdTrib
       cfdi_usage: UsoCFDI
+      zip_code: DomicilioFiscalReceptor
     concept:
       prod_or_svc_key: ClaveProdServ
       identification_number: NoIdentificacion
@@ -43,6 +45,7 @@ es:
       unit_value: ValorUnitario
       amount: Importe
       discount: Descuento
+      taxable_code: ObjetoImp
     tax_transferred:
       base: Base
       tax: Impuesto
