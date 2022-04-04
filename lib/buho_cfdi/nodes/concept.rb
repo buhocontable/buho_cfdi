@@ -9,7 +9,8 @@ module Nodes
       :description,             # Descripcion       -   required
       :unit_value,              # ValorUnitario     -   required
       :amount,                  # Importe           -   required
-      :discount                 # Descuento         -   optional
+      :discount,                # Descuento         -   optional
+      :taxable_code             # ObjetoImp         -   required
     )
  
     validates_presence_of(
