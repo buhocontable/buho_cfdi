@@ -1,7 +1,7 @@
 module Nodes
   class Receipt < ::BuhoCfdi::BaseNode
     DEFAULT = {
-      'xsi:schemaLocation' => 'http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd',
+      'xsi:schemaLocation' => 'http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd',
     }
 
     attr_accessor(

@@ -29,7 +29,7 @@ module BuhoCfdi
 
     def original_chain(invoice)
         invoice   = invoice
-        xslt      = Nokogiri::XSLT(File.read('storage/xslt/cadenaoriginal_3_3.xslt'))
+        xslt      = Nokogiri::XSLT(File.read('storage/xslt/cadenaoriginal_4_0.xslt'))
         chain     = xslt.transform(invoice)
         chain.text.gsub("\n","")
     end
