@@ -22,8 +22,8 @@ module Nodes
       :type_of_receipt,           # TipoDeComprobante   -     required
       :payment_method,            # MetodoPago          -     optional
       :expedition_place,          # LugarExpedicion     -     required
-      :confirmation,               # Confirmacion        -     optional,
-      :export_code                # c_Exportacion       -     required
+      :confirmation,              # Confirmacion        -     optional,
+      :export_code                # Exportacion       -     required
     )
 
     validates_presence_of(

@@ -19,7 +19,7 @@ es:
       payment_method: MetodoPago 
       expedition_place: LugarExpedicion 
       confirmation: Confirmacion
-      export_code: c_Exportacion
+      export_code: Exportacion
     cfdi_related:
       relationship_type: TipoRelacion
     related:
