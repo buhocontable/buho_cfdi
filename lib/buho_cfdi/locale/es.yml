@@ -35,6 +35,7 @@ es:
       tax_identity_registration_number: NumRegIdTrib
       cfdi_usage: UsoCFDI
       zip_code: DomicilioFiscalReceptor
+      fiscal_regime: RegimenFiscalReceptor
     concept:
       prod_or_svc_key: ClaveProdServ
       identification_number: NoIdentificacion
