@@ -82,6 +82,7 @@ es:
       factor_type: TipoFactor
       rate_or_fee: TasaOCuota
       import: Importe
+      base: Base
     cancellation:
       date: Fecha
       rfc: RfcEmisor
