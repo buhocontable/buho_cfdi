@@ -4,14 +4,16 @@ module Nodes
       :tax,           # Impuesto    -   required
       :factor_type,   # TipoFactor  -   required
       :rate_or_fee,   # TasaOCuota  -   required
-      :import         # Importe     -   required
+      :import,        # Importe     -   required
+      :base           # Base        -   required
     )
 
     validates_presence_of(
       :tax,
       :factor_type,
       :rate_or_fee,
-      :import
+      :import,
+      :base
     )
   end
 end

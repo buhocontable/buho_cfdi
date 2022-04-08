@@ -5,7 +5,9 @@ module Nodes
       :name,                              # Nombre            -   optional
       :tax_residency,                     # ResidenciaFiscal  -   optional
       :tax_identity_registration_number,  # NumRegIdTrib      -   optional
-      :cfdi_usage                         # UsoCFDI           -   required
+      :cfdi_usage,                        # UsoCFDI           -   required
+      :zip_code,                          # DomicilioFiscalReceptor - required
+      :fiscal_regime                      # RegimenFiscalReceptor - required
     )
 
     validates_presence_of :rfc, :cfdi_usage
