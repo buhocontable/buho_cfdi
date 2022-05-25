@@ -6,6 +6,6 @@ module Nodes
       :year           # Año            -   required
     )
 
-    validates_presence_of :periodicity, :months:, :year
+    validates_presence_of :periodicity, :months, :year
   end
 end
