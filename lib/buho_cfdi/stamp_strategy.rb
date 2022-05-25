@@ -15,6 +15,8 @@ STAMP_STRATEGY = lambda do |receipt|
         end
       end
 
+      xml.InformacionGlobal(receipt.nodes_global_info.to_hash) if receipt.nodes_global_info
+      
       xml.Emisor(receipt.nodes_issuer.to_hash) if receipt.nodes_issuer
 
       xml.Receptor(receipt.nodes_receiver.to_hash) if receipt.nodes_receiver

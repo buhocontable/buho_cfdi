@@ -24,6 +24,10 @@ es:
       relationship_type: TipoRelacion
     related:
       uuid: UUID
+    global_info:
+      periodicity: Periodicidad
+      months: Meses
+      year: Año
     issuer:
       rfc: Rfc          
       name: Nombre       
