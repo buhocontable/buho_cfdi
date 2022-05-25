@@ -32,6 +32,7 @@ require_relative "buho_cfdi/nodes/incapacity"
 require_relative "buho_cfdi/nodes/other_payment"
 require_relative "buho_cfdi/nodes/payroll_extra_hours"
 require_relative "buho_cfdi/nodes/payroll_receipt"
+require_relative "buho_cfdi/nodes/global_info"
 
 require "buho_cfdi/cancellation_builder"
 require "buho_cfdi/cancellation_strategy"

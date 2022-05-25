@@ -11,6 +11,7 @@ module BuhoCfdi
 
       build_receipt
       build_cfdi_related
+      build_global_info
       build_issuer
       build_receiver
       build_concepts
@@ -38,6 +39,14 @@ module BuhoCfdi
             @receipt.nodes_cfdirelated.nodes_related.add params
           end
         end
+      else
+        nil
+      end
+    end
+
+    def build_global_info
+      if params.include?(:receipt) && params.fetch(:receipt).include?(:global_info_attributes)
+        @receipt.build_child! ::Nodes::GlobalInfo, params.fetch(:receipt).fetch(:global_info_attributes)
       else
         nil
       end
