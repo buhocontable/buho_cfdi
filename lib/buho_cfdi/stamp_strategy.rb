@@ -15,7 +15,7 @@ STAMP_STRATEGY = lambda do |receipt|
         end
       end
 
-      xml.InformacionGlobal(receipt.nodes_globalinfo.to_hash) if receipt.respond_to?(:nodes_globalinfo)
+      xml.InformacionGlobal(receipt.nodes_globalinfo.to_hash) if ((defined? receipt.nodes_globalinfo) && receipt.nodes_globalinfo)
       
       xml.Emisor(receipt.nodes_issuer.to_hash) if receipt.nodes_issuer
 
