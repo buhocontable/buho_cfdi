@@ -141,9 +141,13 @@ module BuhoCfdi
           params.fetch(:receipt).fetch(:payment_attributes).fetch(:related_docs).each do |params|
             related_doc = @receipt.nodes_paymentinfo.nodes_relateddoc.add params
             if !params[:taxes].blank? && !params[:taxes][:transfers].blank?
+
+              @receipt.nodes_paymentinfo.build_children ::Nodes::PaymentTransfer
+
               related_doc.build_children ::Nodes::RelatedDocTransfer
               params[:taxes][:transfers].each do |transfer|
                 related_doc.nodes_relateddoctransfer.add transfer
+                @receipt.nodes_paymentinfo.nodes_paymenttransfer.add transfer
               end
             end
 

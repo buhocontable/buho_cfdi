@@ -40,6 +40,9 @@ module Nodes
     )
 
     def to_hash
+      if @type_of_receipt == 'P'
+        DEFAULT['xsi:schemaLocation'] = 'http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd http://www.sat.gob.mx/Pagos20 http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos20.xsd'
+      end
       super.merge! DEFAULT
     end
   end

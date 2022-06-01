@@ -186,6 +186,12 @@ es:
       exchange_rate: TipoCambioP
       amount: Monto
       bank_name: NomBancoOrdExt
+    payment_transfer:
+      base: BaseP
+      tax: ImpuestoP
+      factor_type: TipoFactorP
+      rate_or_fee: TasaOCuotaP
+      import: ImporteP
     payment_totals:
       total_retained_iva: TotalRetencionesIVA
       total_retained_isr: TotalRetencionesISR
