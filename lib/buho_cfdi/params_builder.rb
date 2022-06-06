@@ -133,33 +133,23 @@ module BuhoCfdi
     end
 
     def build_payment_info
-      if params.include?(:receipt) && params.fetch(:receipt).include?(:payment_attributes)
-        @receipt.build_child! ::Nodes::PaymentInfo, params.fetch(:receipt).fetch(:payment_attributes)
-        @receipt.nodes_paymentinfo.build_child! ::Nodes::PaymentTotals, params.fetch(:receipt).fetch(:payment_attributes).fetch(:totals)
-        @receipt.nodes_paymentinfo.build_children ::Nodes::RelatedDoc
+      return if params.dig(:receipt, :payment_attributes).nil?
 
-          params.fetch(:receipt).fetch(:payment_attributes).fetch(:related_docs).each do |params|
-            related_doc = @receipt.nodes_paymentinfo.nodes_relateddoc.add params
-            if !params[:taxes].blank? && !params[:taxes][:transfers].blank?
+      @receipt.build_child! ::Nodes::PaymentInfo, params.fetch(:receipt).fetch(:payment_attributes)
+      @receipt.nodes_paymentinfo.build_child! ::Nodes::PaymentTotals, params.fetch(:receipt).fetch(:payment_attributes).fetch(:totals)
+      @receipt.nodes_paymentinfo.build_children ::Nodes::RelatedDoc
 
-              @receipt.nodes_paymentinfo.build_children ::Nodes::PaymentTransfer
-
-              related_doc.build_children ::Nodes::RelatedDocTransfer
-              params[:taxes][:transfers].each do |transfer|
-                related_doc.nodes_relateddoctransfer.add transfer
-                @receipt.nodes_paymentinfo.nodes_paymenttransfer.add transfer
-              end
-            end
-
-            if !params[:taxes].blank? && !params[:taxes][:retentions].blank?
-              related_doc.build_children ::Nodes::RelatedDocRetention
-              params[:taxes][:retentions].each do |retention|
-                related_doc.nodes_relateddocretention.add retention
-              end
-            end
+      params.fetch(:receipt).fetch(:payment_attributes).fetch(:related_docs).each do |related_doc_params|
+        related_doc = @receipt.nodes_paymentinfo.nodes_relateddoc.add related_doc_params
+        taxes_transfers = related_doc_params.dig(:taxes, :transfers)
+        if taxes_transfers
+          @receipt.nodes_paymentinfo.build_children ::Nodes::PaymentTransfer
+          related_doc.build_children ::Nodes::RelatedDocTransfer
+          taxes_transfers.each do |transfer|
+            related_doc.nodes_relateddoctransfer.add transfer
+            @receipt.nodes_paymentinfo.nodes_paymenttransfer.add transfer
           end
-      else
-        nil
+        end
       end
     end
   end
