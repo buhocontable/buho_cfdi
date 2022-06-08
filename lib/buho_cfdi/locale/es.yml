@@ -179,3 +179,52 @@ es:
       reason: Motivo
       replacement_uuid: FolioSustitucion
       uuid: UUID
+    payment_info:
+      payment_date: FechaPago
+      payment_form: FormaDePagoP
+      currency: MonedaP
+      exchange_rate: TipoCambioP
+      amount: Monto
+      bank_name: NomBancoOrdExt
+    payment_transfer:
+      base: BaseP
+      tax: ImpuestoP
+      factor_type: TipoFactorP
+      rate_or_fee: TasaOCuotaP
+      import: ImporteP
+    payment_totals:
+      total_retained_iva: TotalRetencionesIVA
+      total_retained_isr: TotalRetencionesISR
+      total_retained_ieps: TotalRetencionesIEPS
+      total_transferred_base_iva_16: TotalTrasladosBaseIVA16
+      total_transferred_tax_iva_16: TotalTrasladosImpuestoIVA16
+      total_transferred_base_iva_8: TotalTrasladosBaseIVA8
+      total_transferred_tax_iva_8: TotalTrasladosImpuestoIVA8
+      total_transferred_base_iva_0: TotalTrasladosBaseIVA0
+      total_transferred_tax_iva_0: TotalTrasladosImpuestoIVA0
+      total_transferred_base_iva_exempt: TotalTrasladosBaseIVAExento
+      total_payment_amount: MontoTotalPagos
+    related_doc:
+      uuid: IdDocumento
+      serie: Serie
+      folio: Folio
+      currency: MonedaDR
+      payment_number: NumParcialidad
+      exchange_rate: EquivalenciaDR
+      previous_debt: ImpSaldoAnt
+      paid_amount: ImpPagado
+      new_debt: ImpSaldoInsoluto
+      taxable_code: ObjetoImpDR
+    related_doc_transfer:
+      base: BaseDR
+      tax: ImpuestoDR
+      factor_type: TipoFactorDR
+      rate_or_fee: TasaOCuotaDR
+      import: ImporteDR
+    related_doc_retention:
+      base: BaseDR
+      tax: ImpuestoDR
+      factor_type: TipoFactorDR
+      rate_or_fee: TasaOCuotaDR
+      import: ImporteDR
+      

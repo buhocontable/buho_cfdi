@@ -1,8 +1,12 @@
 STAMP_STRATEGY = lambda do |receipt|
   Nokogiri::XML::Builder.new do |xml|
     xml.Comprobante(receipt.to_hash) do
+      
       xml.doc.root.namespace = xml.doc.root.add_namespace_definition('cfdi', 'http://www.sat.gob.mx/cfd/4')
       xml.doc.root.add_namespace_definition('xsi', 'http://www.w3.org/2001/XMLSchema-instance')
+      if ((defined? receipt.nodes_paymentinfo) && receipt.nodes_paymentinfo)
+        xml.doc.root.add_namespace_definition('pago20', 'http://www.sat.gob.mx/Pagos20')
+      end
  
       if ((defined? receipt.nodes_cfdirelated) && receipt.nodes_cfdirelated)
         xml.CfdiRelacionados(receipt.nodes_cfdirelated.to_hash) do
@@ -73,6 +77,39 @@ STAMP_STRATEGY = lambda do |receipt|
           end
         end
       end
+
+      if ((defined? receipt.nodes_paymentinfo) && receipt.nodes_paymentinfo)
+        xml.Complemento do
+          namespaced_node = xml['pago20']
+          namespaced_node.Pagos({Version: "2.0"}) do
+            namespaced_node.Totales(receipt.nodes_paymentinfo.nodes_paymenttotals.to_hash) 
+            namespaced_node.Pago(receipt.nodes_paymentinfo.to_hash) do
+              receipt.nodes_paymentinfo.nodes_relateddoc.all.each do |related|
+                namespaced_node.DoctoRelacionado(related.to_hash) do
+
+                  namespaced_node.ImpuestosDR do
+                    if ((defined? related.nodes_relateddoctransfer) && related.nodes_relateddoctransfer)
+                      namespaced_node.TrasladosDR do
+                        related.nodes_relateddoctransfer.all.each do |transfer|
+                          namespaced_node.TrasladoDR(transfer.to_hash)
+                        end
+                      end
+                    end
+                  end
+                end
+              end
+              namespaced_node.ImpuestosP do
+                namespaced_node.TrasladosP do
+                  receipt.nodes_paymentinfo.nodes_paymenttransfer.all.each do |transfer|
+                    namespaced_node.TrasladoP(transfer.to_hash)
+                  end
+                end
+              end
+            end 
+          end
+        end
+      end
+
     end
   end
 end

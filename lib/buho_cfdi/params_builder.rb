@@ -16,6 +16,7 @@ module BuhoCfdi
       build_receiver
       build_concepts
       build_taxes
+      build_payment_info
 
       receipt
     end
@@ -126,6 +127,27 @@ module BuhoCfdi
 
           params.fetch(:receipt).fetch(:taxes_attributes).fetch(:detained_attributes).each do |params|
             @receipt.nodes_taxes.nodes_detained.add params
+          end
+        end
+      end
+    end
+
+    def build_payment_info
+      return if params.dig(:receipt, :payment_attributes).nil?
+
+      @receipt.build_child! ::Nodes::PaymentInfo, params.fetch(:receipt).fetch(:payment_attributes)
+      @receipt.nodes_paymentinfo.build_child! ::Nodes::PaymentTotals, params.fetch(:receipt).fetch(:payment_attributes).fetch(:totals)
+      @receipt.nodes_paymentinfo.build_children ::Nodes::RelatedDoc
+
+      params.fetch(:receipt).fetch(:payment_attributes).fetch(:related_docs).each do |related_doc_params|
+        related_doc = @receipt.nodes_paymentinfo.nodes_relateddoc.add related_doc_params
+        taxes_transfers = related_doc_params.dig(:taxes, :transfers)
+        if taxes_transfers
+          @receipt.nodes_paymentinfo.build_children ::Nodes::PaymentTransfer
+          related_doc.build_children ::Nodes::RelatedDocTransfer
+          taxes_transfers.each do |transfer|
+            related_doc.nodes_relateddoctransfer.add transfer
+            @receipt.nodes_paymentinfo.nodes_paymenttransfer.add transfer
           end
         end
       end
