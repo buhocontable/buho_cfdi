@@ -9,6 +9,6 @@ module Nodes
       :bank_name       # NomBancoOrdExt -   required
     )
 
-    validates_presence_of :payment_date, :payment_form, :currency, :exchange_rate, :amount, :bank_name
+    validates_presence_of :payment_date, :payment_form, :currency, :exchange_rate, :amount
   end
 end
