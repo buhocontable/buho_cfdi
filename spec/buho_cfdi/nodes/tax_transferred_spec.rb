@@ -1,19 +1,27 @@
-RSpec.describe Nodes::TaxTransferred, type: :model do
-  it { should respond_to(:base) }
-  it { should respond_to(:tax) }
-  it { should respond_to(:factor_type) }
-  it { should respond_to(:rate_or_fee) }
-  it { should respond_to(:import) }
-
-  context 'required params' do
-    it { should validate_presence_of(:base) }
-    it { should validate_presence_of(:tax) }
-    it { should validate_presence_of(:factor_type) }
+RSpec.describe ::Nodes::TaxTransferred, type: :model do
+  context 'when factor_type is not Exento' do
+    let (:node) { ::Nodes::TaxTransferred.new({tax: '001', factor_type: 'Tasa', base: '100', rate_or_fee: '0.1000', import: '100'}) }
+    it 'has all values' do
+      expect(node.valid?).to eq(true)
+      expect(node.tax).to eq('001')
+      expect(node.factor_type).to eq('Tasa')
+      expect(node.base).to eq('100')
+      expect(node.rate_or_fee).to eq('0.1000')
+      expect(node.import).to eq('100')
+      expect(node.to_hash).to eq({"Impuesto"=>"001", "TipoFactor"=>"Tasa", "Base"=>"100", "TasaOCuota"=>"0.1000", "Importe"=>"100"})
+    end
   end
 
-  describe '#to_hash' do
-    it 'is expected to return a kind of Hash' do
-      expect(subject.to_hash).to be_kind_of(Hash)
+  context 'when factor_type is Exento' do
+    let (:node) { ::Nodes::TaxTransferred.new({tax: '001', factor_type: 'Exento', base: '100'}) }
+    it 'has only required values' do
+      expect(node.valid?).to be(true)
+      expect(node.tax).to eq('001')
+      expect(node.factor_type).to eq('Exento')
+      expect(node.base).to eq('100')
+      expect(node.rate_or_fee).to eq(nil)
+      expect(node.import).to eq(nil)
+      expect(node.to_hash).to eq({"Impuesto"=>"001", "TipoFactor"=>"Exento", "Base"=>"100"})
     end
   end
 end
