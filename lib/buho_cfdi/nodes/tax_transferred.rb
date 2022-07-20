@@ -9,9 +9,18 @@ module Nodes
     )
 
     validates_presence_of(
-      :base,
       :tax,
       :factor_type,
+      :base
     )
+
+    validates_presence_of(
+      :rate_or_fee,
+      :import
+    ) unless :is_exempt?
+
+    def is_exempt?
+      factor_type == 'Exento'
+    end
   end
 end
