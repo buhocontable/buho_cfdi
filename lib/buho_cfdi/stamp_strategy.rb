@@ -7,7 +7,9 @@ STAMP_STRATEGY = lambda do |receipt|
       if ((defined? receipt.nodes_paymentinfo) && receipt.nodes_paymentinfo)
         xml.doc.root.add_namespace_definition('pago20', 'http://www.sat.gob.mx/Pagos20')
       end
- 
+
+      xml.InformacionGlobal(receipt.nodes_globalinfo.to_hash) if ((defined? receipt.nodes_globalinfo) && receipt.nodes_globalinfo)
+
       if ((defined? receipt.nodes_cfdirelated) && receipt.nodes_cfdirelated)
         xml.CfdiRelacionados(receipt.nodes_cfdirelated.to_hash) do
 
@@ -19,8 +21,6 @@ STAMP_STRATEGY = lambda do |receipt|
         end
       end
 
-      xml.InformacionGlobal(receipt.nodes_globalinfo.to_hash) if ((defined? receipt.nodes_globalinfo) && receipt.nodes_globalinfo)
-      
       xml.Emisor(receipt.nodes_issuer.to_hash) if receipt.nodes_issuer
 
       xml.Receptor(receipt.nodes_receiver.to_hash) if receipt.nodes_receiver
