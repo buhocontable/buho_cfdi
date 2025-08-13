@@ -1,0 +1,33 @@
+# Git files
+.git
+.gitignore
+
+# Documentation
+README.md
+LICENSE.txt
+
+# CI/CD files
+.travis.yml
+.coveralls.yml
+
+# Docker files
+Dockerfile
+docker-compose.yml
+.dockerignore
+
+# Redis dump (from project)
+dump.rdb
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+tmp/
+*.tmp
