@@ -1,0 +1,16 @@
+services:
+  buho_cfdi:
+    build: .
+    volumes:
+      - .:/app
+      - gem_cache:/usr/local/bundle
+      - /app/vendor
+    working_dir: /app
+    command: sh -c "bundle install && RUBYOPT=\"-r logger\" bundle exec rspec"
+    environment:
+      - BUNDLE_PATH=/usr/local/bundle
+    stdin_open: true
+    tty: true
+
+volumes:
+  gem_cache:
