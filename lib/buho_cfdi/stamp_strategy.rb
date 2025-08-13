@@ -88,6 +88,13 @@ STAMP_STRATEGY = lambda do |receipt|
                 namespaced_node.DoctoRelacionado(related.to_hash) do
 
                   namespaced_node.ImpuestosDR do
+                    if ((defined? related.nodes_relateddocretention) && related.nodes_relateddocretention)
+                      namespaced_node.RetencionesDR do
+                        related.nodes_relateddocretention.all.each do |retention|
+                          namespaced_node.RetencionDR(retention.to_hash)
+                        end
+                      end
+                    end
                     if ((defined? related.nodes_relateddoctransfer) && related.nodes_relateddoctransfer)
                       namespaced_node.TrasladosDR do
                         related.nodes_relateddoctransfer.all.each do |transfer|
@@ -99,9 +106,18 @@ STAMP_STRATEGY = lambda do |receipt|
                 end
               end
               namespaced_node.ImpuestosP do
-                namespaced_node.TrasladosP do
-                  receipt.nodes_paymentinfo.nodes_paymenttransfer.all.each do |transfer|
-                    namespaced_node.TrasladoP(transfer.to_hash)
+                if ((defined? receipt.nodes_paymentinfo.nodes_paymentretention) && receipt.nodes_paymentinfo.nodes_paymentretention)
+                  namespaced_node.RetencionesP do
+                    receipt.nodes_paymentinfo.nodes_paymentretention.all.each do |retention|
+                      namespaced_node.RetencionP(retention.to_hash)
+                    end
+                  end
+                end
+                if ((defined? receipt.nodes_paymentinfo.nodes_paymenttransfer) && receipt.nodes_paymentinfo.nodes_paymenttransfer)
+                  namespaced_node.TrasladosP do
+                    receipt.nodes_paymentinfo.nodes_paymenttransfer.all.each do |transfer|
+                      namespaced_node.TrasladoP(transfer.to_hash)
+                    end
                   end
                 end
               end

@@ -141,14 +141,41 @@ module BuhoCfdi
 
       params.fetch(:receipt).fetch(:payment_attributes).fetch(:related_docs).each do |related_doc_params|
         related_doc = @receipt.nodes_paymentinfo.nodes_relateddoc.add related_doc_params
+
+        # Handle document level retentions
+        taxes_retentions = related_doc_params.dig(:taxes, :retentions)
+        if taxes_retentions
+          related_doc.build_children ::Nodes::RelatedDocRetention
+          taxes_retentions.each do |retention|
+            related_doc.nodes_relateddocretention.add retention
+          end
+        end
+
+        # Handle document level transfers
         taxes_transfers = related_doc_params.dig(:taxes, :transfers)
         if taxes_transfers
-          @receipt.nodes_paymentinfo.build_children ::Nodes::PaymentTransfer
           related_doc.build_children ::Nodes::RelatedDocTransfer
           taxes_transfers.each do |transfer|
             related_doc.nodes_relateddoctransfer.add transfer
-            @receipt.nodes_paymentinfo.nodes_paymenttransfer.add transfer
           end
+        end
+      end
+
+      # Handle payment level retentions
+      payment_retentions = params.dig(:receipt, :payment_attributes, :taxes, :retentions)
+      if payment_retentions
+        @receipt.nodes_paymentinfo.build_children ::Nodes::PaymentRetention
+        payment_retentions.each do |retention|
+          @receipt.nodes_paymentinfo.nodes_paymentretention.add retention
+        end
+      end
+
+      # Handle payment level transfers
+      payment_transfers = params.dig(:receipt, :payment_attributes, :taxes, :transfers)
+      if payment_transfers
+        @receipt.nodes_paymentinfo.build_children ::Nodes::PaymentTransfer
+        payment_transfers.each do |transfer|
+          @receipt.nodes_paymentinfo.nodes_paymenttransfer.add transfer
         end
       end
     end

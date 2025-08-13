@@ -31,14 +31,14 @@ module CfdiParamsHelper
         "issuer_attributes": {
           "rfc": "hudshududhs",
           "name": "jdsjidjsijdi",
-          "fiscal_regime": "jdisjdisjid" 
+          "fiscal_regime": "jdisjdisjid"
         },
         "receiver_attributes": {
           "rfc": "jdisjdisj",
           "name": "jdsjdijsijds",
           "tax_residency": "udisjdisjidjisjd",
           "tax_identity_registration_number": "djisjdisjidjsidjis",
-          "cfdi_usage": "disjdisidisdjs" 
+          "cfdi_usage": "disjdisidisdjs"
         },
         "concepts_attributes": [
           {
@@ -66,7 +66,7 @@ module CfdiParamsHelper
                 "tax": "sjisjijsijsi",
                 "factor_type": "sjijsijsijsi",
                 "rate_or_fee": "ssijisjisj",
-                "import": "sjijsisijisj" 
+                "import": "sjijsisijisj"
               }
             ],
             "customs_information_attributes": {
@@ -94,13 +94,13 @@ module CfdiParamsHelper
               "tax": "",
               "factor_type": "",
               "rate_or_fee": "",
-              "import": "" 
+              "import": ""
             }
           ],
           "detained_attributes": [
             {
               "tax": "",
-              "import": "" 
+              "import": ""
             }
           ]
         }
@@ -245,4 +245,218 @@ module CfdiParamsHelper
     }
   end
 
+  def payment_complement_params
+    {
+      "receipt": {
+        "version": "4.0",
+        "folio_number": "2230",
+        "date": "2024-09-18T16:22:13",
+        "stamp": "test_stamp",
+        "certificate_number": "00001000000700298879",
+        "certificate": "test_certificate",
+        "subtotal": "0",
+        "currency": "XXX",
+        "total": "0",
+        "type_of_receipt": "P",
+        "expedition_place": "72190",
+        "export_code": "01",
+        "issuer_attributes": {
+          "rfc": "EKU9003173C9",
+          "name": "MIGUEL ANGEL GUTIERREZ ROSALES",
+          "fiscal_regime": "626"
+        },
+        "receiver_attributes": {
+          "rfc": "CVA910402GI5",
+          "name": "CASANOVA VALLEJO",
+          "zip_code": "02300",
+          "fiscal_regime": "601",
+          "cfdi_usage": "CP01"
+        },
+        "concepts_attributes": [
+          {
+            "prod_or_svc_key": "84111506",
+            "quantity": "1",
+            "unit_measure_key": "ACT",
+            "description": "Pago",
+            "unit_value": "0",
+            "amount": "0",
+            "taxable_code": "01"
+          }
+        ],
+        "payment_attributes": {
+          "payment_date": "2024-09-18T16:26:18",
+          "payment_form": "03",
+          "currency": "MXN",
+          "exchange_rate": "1",
+          "amount": "23046.39",
+          "totals": {
+            "total_retained_isr": "251.05",
+            "total_transferred_base_iva_16": "20084.00",
+            "total_transferred_tax_iva_16": "3213.44",
+            "total_payment_amount": "23046.39"
+          },
+          "related_docs": [
+            {
+              "uuid": "CE01CED3-EAE2-4C41-89D2-855758938DA8",
+              "folio": "2155",
+              "currency": "MXN",
+              "exchange_rate": "1",
+              "payment_number": "1",
+              "previous_debt": "23046.39",
+              "paid_amount": "23046.39",
+              "new_debt": "0",
+              "taxable_code": "02",
+              "taxes": {
+                "retentions": [
+                  {
+                    "base": "20084.000000",
+                    "tax": "001",
+                    "factor_type": "Tasa",
+                    "rate_or_fee": "0.012500",
+                    "import": "251.050000"
+                  }
+                ],
+                "transfers": [
+                  {
+                    "base": "20084.000000",
+                    "tax": "002",
+                    "factor_type": "Tasa",
+                    "rate_or_fee": "0.160000",
+                    "import": "3213.440000"
+                  }
+                ]
+              }
+            }
+          ],
+          "taxes": {
+            "retentions": [
+              {
+                "tax": "001",
+                "import": "251.050000"
+              }
+            ],
+            "transfers": [
+              {
+                "base": "20084.000000",
+                "tax": "002",
+                "factor_type": "Tasa",
+                "rate_or_fee": "0.160000",
+                "import": "3213.440000"
+              }
+            ]
+          }
+        }
+      }
+    }
+  end
+
+  def multiple_payment_retentions_params
+    {
+      "receipt": {
+        "version": "4.0",
+        "folio_number": "2230",
+        "date": "2024-09-18T16:22:13",
+        "stamp": "test_stamp",
+        "certificate_number": "00001000000700298879",
+        "certificate": "test_certificate",
+        "subtotal": "0",
+        "currency": "XXX",
+        "total": "0",
+        "type_of_receipt": "P",
+        "expedition_place": "72190",
+        "export_code": "01",
+        "issuer_attributes": {
+          "rfc": "EKU9003173C9",
+          "name": "MIGUEL ANGEL GUTIERREZ ROSALES",
+          "fiscal_regime": "626"
+        },
+        "receiver_attributes": {
+          "rfc": "CVA910402GI5",
+          "name": "CASANOVA VALLEJO",
+          "zip_code": "02300",
+          "fiscal_regime": "601",
+          "cfdi_usage": "CP01"
+        },
+        "concepts_attributes": [
+          {
+            "prod_or_svc_key": "84111506",
+            "quantity": "1",
+            "unit_measure_key": "ACT",
+            "description": "Pago",
+            "unit_value": "0",
+            "amount": "0",
+            "taxable_code": "01"
+          }
+        ],
+        "payment_attributes": {
+          "payment_date": "2024-09-18T16:26:18",
+          "payment_form": "03",
+          "currency": "MXN",
+          "exchange_rate": "1",
+          "amount": "23046.39",
+          "totals": {
+            "total_retained_isr": "451.05",
+            "total_retained_iva": "200.00",
+            "total_transferred_base_iva_16": "20084.00",
+            "total_transferred_tax_iva_16": "3213.44",
+            "total_payment_amount": "23046.39"
+          },
+          "related_docs": [
+            {
+              "uuid": "CE01CED3-EAE2-4C41-89D2-855758938DA8",
+              "folio": "2155",
+              "currency": "MXN",
+              "exchange_rate": "1",
+              "payment_number": "1",
+              "previous_debt": "23046.39",
+              "paid_amount": "23046.39",
+              "new_debt": "0",
+              "taxable_code": "02",
+              "taxes": {
+                "retentions": [
+                  {
+                    "base": "20084.000000",
+                    "tax": "001",
+                    "factor_type": "Tasa",
+                    "rate_or_fee": "0.012500",
+                    "import": "251.050000"
+                  }
+                ],
+                "transfers": [
+                  {
+                    "base": "20084.000000",
+                    "tax": "002",
+                    "factor_type": "Tasa",
+                    "rate_or_fee": "0.160000",
+                    "import": "3213.440000"
+                  }
+                ]
+              }
+            }
+          ],
+          "taxes": {
+            "retentions": [
+              {
+                "tax": "001",
+                "import": "251.050000"
+              },
+              {
+                "tax": "002",
+                "import": "200.000000"
+              }
+            ],
+            "transfers": [
+              {
+                "base": "20084.000000",
+                "tax": "002",
+                "factor_type": "Tasa",
+                "rate_or_fee": "0.160000",
+                "import": "3213.440000"
+              }
+            ]
+          }
+        }
+      }
+    }
+  end
 end
