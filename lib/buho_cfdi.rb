@@ -39,6 +39,7 @@ require_relative "buho_cfdi/nodes/payment_totals"
 require_relative "buho_cfdi/nodes/related_doc"
 require_relative "buho_cfdi/nodes/related_doc_transfer"
 require_relative "buho_cfdi/nodes/related_doc_retention"
+require_relative "buho_cfdi/nodes/payment_retention"
 
 require "buho_cfdi/cancellation_builder"
 require "buho_cfdi/cancellation_strategy"
