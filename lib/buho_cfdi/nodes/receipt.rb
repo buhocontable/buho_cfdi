@@ -40,8 +40,14 @@ module Nodes
     )
 
     def to_hash
-      if @type_of_receipt == 'P'
+      # Set schemaLocation based on document type
+      case @type_of_receipt
+      when 'P' # Pagos
         DEFAULT['xsi:schemaLocation'] = 'http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd http://www.sat.gob.mx/Pagos20 http://www.sat.gob.mx/sitio_internet/cfd/Pagos/Pagos20.xsd'
+      when 'N' # Nómina
+        DEFAULT['xsi:schemaLocation'] = 'http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd'
+      else
+        DEFAULT['xsi:schemaLocation'] = 'http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd'
       end
       super.merge! DEFAULT
     end

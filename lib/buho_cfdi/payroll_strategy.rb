@@ -1,7 +1,8 @@
 PAYROLL_STRATEGY = lambda do |receipt|
   Nokogiri::XML::Builder.new do |xml|
     xml.Comprobante(receipt.to_hash) do
-      xml.doc.root.namespace = xml.doc.root.add_namespace_definition('cfdi', 'http://www.sat.gob.mx/cfd/3')
+      # CFDI 4.0 namespace (upgraded from 3.3)
+      xml.doc.root.namespace = xml.doc.root.add_namespace_definition('cfdi', 'http://www.sat.gob.mx/cfd/4')
       xml.doc.root.add_namespace_definition('xsi', 'http://www.w3.org/2001/XMLSchema-instance')
       xml.doc.root.add_namespace_definition('nomina12', 'http://www.sat.gob.mx/nomina12')
 

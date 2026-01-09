@@ -125,13 +125,14 @@ module CfdiParamsHelper
   def payroll_params
     {
       "receipt": {
-        "version": "3.3",
+        "version": "4.0",
         "date": "2020-05-12T18:12:27",
         "payment_way": "01",
         "subtotal": "10000.00",
         "currency": "MXN",
         "total": "11600.00",
-        "type_of_receipt": "I",
+        "type_of_receipt": "N",
+        "export_code": "01",
         "payment_method": "PUE",
         "expedition_place": "63700",
         "issuer_attributes": {
@@ -142,7 +143,9 @@ module CfdiParamsHelper
         "receiver_attributes": {
           "rfc": "TIP180917FI0",
           "name": "Cliente Prueba SA de CV",
-          "cfdi_usage": "G01"
+          "zip_code": "63700",
+          "fiscal_regime": "601",
+          "cfdi_usage": "CN01"
         },
         "concepts_attributes": [
           {

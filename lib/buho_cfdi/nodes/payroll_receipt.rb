@@ -1,7 +1,8 @@
 module Nodes
   class PayrollReceipt < ::BuhoCfdi::BaseNode
+    # CFDI 4.0 schemaLocation (upgraded from 3.3)
     DEFAULT = {
-      'xsi:schemaLocation' => 'http://www.sat.gob.mx/cfd/3 http://www.sat.gob.mx/sitio_internet/cfd/3/cfdv33.xsd http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd',
+      'xsi:schemaLocation' => 'http://www.sat.gob.mx/cfd/4 http://www.sat.gob.mx/sitio_internet/cfd/4/cfdv40.xsd http://www.sat.gob.mx/nomina12 http://www.sat.gob.mx/sitio_internet/cfd/nomina/nomina12.xsd',
     }
 
     attr_accessor(
@@ -18,6 +19,7 @@ module Nodes
       :currency,                  # Moneda              -     required
       :total,                     # Total               -     required
       :type_of_receipt,           # TipoDeComprobante   -     required
+      :export_code,               # Exportacion         -     required (CFDI 4.0)
       :payment_method,            # MetodoPago          -     optional
       :expedition_place,          # LugarExpedicion     -     required
       :confirmation               # Confirmacion        -     optional
@@ -33,6 +35,7 @@ module Nodes
       :currency,
       :total,
       :type_of_receipt,
+      :export_code,
       :expedition_place
     )
 

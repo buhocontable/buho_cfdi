@@ -170,6 +170,7 @@ es:
       exchange_rate: TipoCambio 
       total: Total 
       type_of_receipt: TipoDeComprobante 
+      export_code: Exportacion
       payment_method: MetodoPago 
       expedition_place: LugarExpedicion 
       confirmation: Confirmacion

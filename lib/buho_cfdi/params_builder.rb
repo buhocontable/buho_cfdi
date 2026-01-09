@@ -17,6 +17,7 @@ module BuhoCfdi
       build_concepts
       build_taxes
       build_payment_info
+      build_payroll
 
       receipt
     end
@@ -176,6 +177,61 @@ module BuhoCfdi
         @receipt.nodes_paymentinfo.build_children ::Nodes::PaymentTransfer
         payment_transfers.each do |transfer|
           @receipt.nodes_paymentinfo.nodes_paymenttransfer.add transfer
+        end
+      end
+    end
+
+    # Build Nómina complement (merged from PayrollBuilder)
+    def build_payroll
+      return unless params.dig(:receipt, :payroll_attributes)
+
+      payroll_attrs = params.fetch(:receipt).fetch(:payroll_attributes)
+      @receipt.build_child! ::Nodes::Payroll, payroll_attrs
+
+      # Payroll Issuer (Emisor del complemento)
+      if payroll_attrs.include?(:issuer_attributes)
+        @receipt.nodes_payroll.build_child! ::Nodes::PayrollIssuer, payroll_attrs.fetch(:issuer_attributes)
+      end
+
+      # Payroll Receiver (Receptor del complemento)
+      if payroll_attrs.include?(:receiver_attributes)
+        @receipt.nodes_payroll.build_child! ::Nodes::PayrollReceiver, payroll_attrs.fetch(:receiver_attributes)
+      end
+
+      # Perceptions (Percepciones)
+      if payroll_attrs.include?(:perceptions_attributes)
+        perceptions_attrs = payroll_attrs.fetch(:perceptions_attributes)
+        @receipt.nodes_payroll.build_child! ::Nodes::Perceptions, perceptions_attrs
+
+        if perceptions_attrs.include?(:perception_attributes)
+          @receipt.nodes_payroll.nodes_perceptions.build_children ::Nodes::Perception
+          perceptions_attrs.fetch(:perception_attributes).each do |perception_params|
+            @receipt.nodes_payroll.nodes_perceptions.nodes_perception.add perception_params
+          end
+        end
+      end
+
+      # Deductions (Deducciones)
+      if payroll_attrs.include?(:deductions_attributes)
+        deductions_attrs = payroll_attrs.fetch(:deductions_attributes)
+        @receipt.nodes_payroll.build_child! ::Nodes::Deductions, deductions_attrs
+
+        if deductions_attrs.include?(:deduction_attributes)
+          @receipt.nodes_payroll.nodes_deductions.build_children ::Nodes::Deduction
+          deductions_attrs.fetch(:deduction_attributes).each do |deduction_params|
+            @receipt.nodes_payroll.nodes_deductions.nodes_deduction.add deduction_params
+          end
+        end
+      end
+
+      # Other Payments (OtrosPagos)
+      if payroll_attrs.include?(:other_payment_attributes)
+        @receipt.nodes_payroll.build_children ::Nodes::OtherPayment
+        payroll_attrs.fetch(:other_payment_attributes).each do |other_payment_params|
+          other_payment = @receipt.nodes_payroll.nodes_otherpayment.add other_payment_params
+          if other_payment_params.include?(:employment_subsidy_attributes)
+            other_payment.build_child! ::Nodes::EmploymentSubsidy, other_payment_params.fetch(:employment_subsidy_attributes)
+          end
         end
       end
     end

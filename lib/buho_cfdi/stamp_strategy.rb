@@ -4,8 +4,15 @@ STAMP_STRATEGY = lambda do |receipt|
       
       xml.doc.root.namespace = xml.doc.root.add_namespace_definition('cfdi', 'http://www.sat.gob.mx/cfd/4')
       xml.doc.root.add_namespace_definition('xsi', 'http://www.w3.org/2001/XMLSchema-instance')
+      
+      # Add Pagos 2.0 namespace if payment complement present
       if ((defined? receipt.nodes_paymentinfo) && receipt.nodes_paymentinfo)
         xml.doc.root.add_namespace_definition('pago20', 'http://www.sat.gob.mx/Pagos20')
+      end
+      
+      # Add Nómina 1.2 namespace if payroll complement present
+      if ((defined? receipt.nodes_payroll) && receipt.nodes_payroll)
+        xml.doc.root.add_namespace_definition('nomina12', 'http://www.sat.gob.mx/nomina12')
       end
 
       xml.InformacionGlobal(receipt.nodes_globalinfo.to_hash) if ((defined? receipt.nodes_globalinfo) && receipt.nodes_globalinfo)
@@ -78,6 +85,7 @@ STAMP_STRATEGY = lambda do |receipt|
         end
       end
 
+      # Render Pagos 2.0 complement
       if ((defined? receipt.nodes_paymentinfo) && receipt.nodes_paymentinfo)
         xml.Complemento do
           namespaced_node = xml['pago20']
@@ -122,6 +130,51 @@ STAMP_STRATEGY = lambda do |receipt|
                 end
               end
             end 
+          end
+        end
+      end
+
+      # Render Nómina 1.2 complement
+      if ((defined? receipt.nodes_payroll) && !receipt.nodes_payroll.blank?)
+        xml.Complemento do
+          xml["nomina12"].Nomina(receipt.nodes_payroll.to_hash) do
+
+            if ((defined? receipt.nodes_payroll.nodes_payrollissuer) && receipt.nodes_payroll.nodes_payrollissuer)
+              xml["nomina12"].Emisor(receipt.nodes_payroll.nodes_payrollissuer.to_hash)
+            end
+
+            if ((defined? receipt.nodes_payroll.nodes_payrollreceiver) && receipt.nodes_payroll.nodes_payrollreceiver)
+              xml["nomina12"].Receptor(receipt.nodes_payroll.nodes_payrollreceiver.to_hash)
+            end
+
+            if (defined? receipt.nodes_payroll.nodes_perceptions) && receipt.nodes_payroll.nodes_perceptions
+              xml["nomina12"].Percepciones(receipt.nodes_payroll.nodes_perceptions.to_hash) do
+                receipt.nodes_payroll.nodes_perceptions.nodes_perception.all.each do |perception|
+                  xml["nomina12"].Percepcion(perception.to_hash)
+                end
+              end
+            end
+
+            if (defined? receipt.nodes_payroll.nodes_deductions) && receipt.nodes_payroll.nodes_deductions
+              xml["nomina12"].Deducciones(receipt.nodes_payroll.nodes_deductions.to_hash) do
+                receipt.nodes_payroll.nodes_deductions.nodes_deduction.all.each do |deduction|
+                  xml["nomina12"].Deduccion(deduction.to_hash)
+                end
+              end
+            end
+
+            if (defined? receipt.nodes_payroll.nodes_otherpayment) && receipt.nodes_payroll.nodes_otherpayment
+              xml["nomina12"].OtrosPagos do
+                receipt.nodes_payroll.nodes_otherpayment.all.each do |other_payment|
+                  xml["nomina12"].OtroPago(other_payment.to_hash) do
+                    if (defined? other_payment.nodes_employmentsubsidy) && other_payment.nodes_employmentsubsidy
+                      xml["nomina12"].SubsidioAlEmpleo(other_payment.nodes_employmentsubsidy.to_hash)
+                    end
+                  end
+                end
+              end
+            end
+
           end
         end
       end

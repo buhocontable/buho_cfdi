@@ -84,10 +84,11 @@ module BuhoCfdi
       cfdi
     end
 
+    # DEPRECATED: Use process_xml instead. This method now delegates to process_xml.
+    # Will be removed in next major version.
     def process_payroll
-      xml_payroll_builder
-      @cfdi = payroll_strategy.call(payroll_receipt)
-      cfdi
+      warn "[DEPRECATION] process_payroll is deprecated. Use process_xml instead."
+      process_xml
     end
 
     private
